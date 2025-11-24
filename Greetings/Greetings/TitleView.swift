@@ -18,8 +18,12 @@ struct TitleView: View {
         isRotated ? .zero : Angle(degrees: 360)
     }
     
-   var angularGradient: AngularGradient  {
-       AngularGradient.init(gradient: Gradient(colors: [.pink, .purple, .blue, .orange, .yellow]), center: .center, angle: .zero)
+    var angularGradient: AngularGradient  {
+        AngularGradient(
+            gradient: Gradient(colors: [.pink, .purple, .blue, .orange, .yellow]),
+            center: .center,
+            angle: .zero
+        )
     }
     
     @State private var subtitle = "Exploring iOS Programming"
@@ -30,7 +34,6 @@ struct TitleView: View {
         "Building a personal website",
         "Exploring SwiftUI"
     ]
-        
     
     var body: some View {
         HStack {
@@ -43,24 +46,24 @@ struct TitleView: View {
                     .fontWeight(.thin)
             }
             .onTapGesture {
-//                Change subtitle
                 subtitle = subtitles.randomElement() ?? "Exploring iOS Programming"
             }
             
             Spacer()
             
-            Circle()                .strokeBorder(angularGradient, lineWidth: lineWidth)
+            Circle()
+                .strokeBorder(angularGradient, lineWidth: lineWidth)
                 .frame(width: diameter, height: diameter)
+                .rotationEffect(angle)              // <- key line
                 .onTapGesture {
-                    withAnimation(Animation.spring()) {
+                    withAnimation(.spring()) {
                         isRotated.toggle()
                     }
                 }
-            
         }
     }
 }
-    
+
 #Preview {
     VStack {
         TitleView()
@@ -68,5 +71,4 @@ struct TitleView: View {
     }
     .padding()
 }
-
 
