@@ -26,9 +26,9 @@ struct TitleView: View {
         )
     }
     
-    @State private var subtitle = "Exploring iOS Programming"
+    @State private var subtitle: LocalizedStringKey = "Exploring iOS Programming"
     
-    let subtitles = [
+    let subtitles: [LocalizedStringKey] = [
         "Exploring iOS Programming",
         "Learning how to bake",
         "Building a personal website",
@@ -46,7 +46,8 @@ struct TitleView: View {
                     .fontWeight(.thin)
             }
             .onTapGesture {
-                subtitle = subtitles.randomElement() ?? "Exploring iOS Programming"
+                subtitle = subtitles
+                    .randomElement() ?? LocalizedStringKey ("Exploring iOS Programming")
             }
             
             Spacer()

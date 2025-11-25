@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		5B65A1912ED2483200771693 /* Greetings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Greetings.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B51861C2ED638D300277607 /* Query vs Fetch Descriptor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Query vs Fetch Descriptor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		5B65A1932ED2483200771693 /* Greetings */ = {
+		5B51861E2ED638D300277607 /* Query vs Fetch Descriptor */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Greetings;
+			path = "Query vs Fetch Descriptor";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5B65A18E2ED2483200771693 /* Frameworks */ = {
+		5B5186192ED638D300277607 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B65A1882ED2483200771693 = {
+		5B5186132ED638D300277607 = {
 			isa = PBXGroup;
 			children = (
-				5B65A1932ED2483200771693 /* Greetings */,
-				5B65A1922ED2483200771693 /* Products */,
+				5B51861E2ED638D300277607 /* Query vs Fetch Descriptor */,
+				5B51861D2ED638D300277607 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		5B65A1922ED2483200771693 /* Products */ = {
+		5B51861D2ED638D300277607 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B65A1912ED2483200771693 /* Greetings.app */,
+				5B51861C2ED638D300277607 /* Query vs Fetch Descriptor.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,67 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5B65A1902ED2483200771693 /* Greetings */ = {
+		5B51861B2ED638D300277607 /* Query vs Fetch Descriptor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5B65A19C2ED2483300771693 /* Build configuration list for PBXNativeTarget "Greetings" */;
+			buildConfigurationList = 5B5186272ED638D400277607 /* Build configuration list for PBXNativeTarget "Query vs Fetch Descriptor" */;
 			buildPhases = (
-				5B65A18D2ED2483200771693 /* Sources */,
-				5B65A18E2ED2483200771693 /* Frameworks */,
-				5B65A18F2ED2483200771693 /* Resources */,
+				5B5186182ED638D300277607 /* Sources */,
+				5B5186192ED638D300277607 /* Frameworks */,
+				5B51861A2ED638D300277607 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				5B65A1932ED2483200771693 /* Greetings */,
+				5B51861E2ED638D300277607 /* Query vs Fetch Descriptor */,
 			);
-			name = Greetings;
+			name = "Query vs Fetch Descriptor";
 			packageProductDependencies = (
 			);
-			productName = Greetings;
-			productReference = 5B65A1912ED2483200771693 /* Greetings.app */;
+			productName = "Query vs Fetch Descriptor";
+			productReference = 5B51861C2ED638D300277607 /* Query vs Fetch Descriptor.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5B65A1892ED2483200771693 /* Project object */ = {
+		5B5186142ED638D300277607 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					5B65A1902ED2483200771693 = {
+					5B51861B2ED638D300277607 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 5B65A18C2ED2483200771693 /* Build configuration list for PBXProject "Greetings" */;
+			buildConfigurationList = 5B5186172ED638D300277607 /* Build configuration list for PBXProject "Query vs Fetch Descriptor" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
-				"zh-Hans",
-				ja,
-				ko,
 			);
-			mainGroup = 5B65A1882ED2483200771693;
+			mainGroup = 5B5186132ED638D300277607;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 5B65A1922ED2483200771693 /* Products */;
+			productRefGroup = 5B51861D2ED638D300277607 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B65A1902ED2483200771693 /* Greetings */,
+				5B51861B2ED638D300277607 /* Query vs Fetch Descriptor */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5B65A18F2ED2483200771693 /* Resources */ = {
+		5B51861A2ED638D300277607 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -118,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5B65A18D2ED2483200771693 /* Sources */ = {
+		5B5186182ED638D300277607 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		5B65A19A2ED2483300771693 /* Debug */ = {
+		5B5186252ED638D400277607 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -186,12 +183,11 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		5B65A19B2ED2483300771693 /* Release */ = {
+		5B5186262ED638D400277607 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -242,11 +238,10 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = Release;
 		};
-		5B65A19D2ED2483300771693 /* Debug */ = {
+		5B5186282ED638D400277607 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -274,7 +269,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = name.pauldenlinger.Greetings;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.pauldenlinger.Query-vs-Fetch-Descriptor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -290,7 +285,7 @@
 			};
 			name = Debug;
 		};
-		5B65A19E2ED2483300771693 /* Release */ = {
+		5B5186292ED638D400277607 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -318,7 +313,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = name.pauldenlinger.Greetings;
+				PRODUCT_BUNDLE_IDENTIFIER = "name.pauldenlinger.Query-vs-Fetch-Descriptor";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
@@ -337,25 +332,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5B65A18C2ED2483200771693 /* Build configuration list for PBXProject "Greetings" */ = {
+		5B5186172ED638D300277607 /* Build configuration list for PBXProject "Query vs Fetch Descriptor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5B65A19A2ED2483300771693 /* Debug */,
-				5B65A19B2ED2483300771693 /* Release */,
+				5B5186252ED638D400277607 /* Debug */,
+				5B5186262ED638D400277607 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B65A19C2ED2483300771693 /* Build configuration list for PBXNativeTarget "Greetings" */ = {
+		5B5186272ED638D400277607 /* Build configuration list for PBXNativeTarget "Query vs Fetch Descriptor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5B65A19D2ED2483300771693 /* Debug */,
-				5B65A19E2ED2483300771693 /* Release */,
+				5B5186282ED638D400277607 /* Debug */,
+				5B5186292ED638D400277607 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 5B65A1892ED2483200771693 /* Project object */;
+	rootObject = 5B5186142ED638D300277607 /* Project object */;
 }
