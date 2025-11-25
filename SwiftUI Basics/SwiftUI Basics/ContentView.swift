@@ -9,7 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
+        ZStack {
+//            Background color
+            Color 
+                .black
+                .ignoresSafeArea()
+//             Text
             Text("SwiftUI Basics")
                 .font(.largeTitle)
                 .fontWeight(.semibold)
