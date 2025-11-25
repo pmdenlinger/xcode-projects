@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    let colorList1: [Color] = [.red, .purple, .green, .pink]
+    
+    let colorList2: [Color] = [.black, .white, .blue]
+    
+    @State var screenTapped: Bool = false
+    
+    var colors: [Color] {
+        screenTapped ? colorList1 : colorList2
+    }
+    
     var body: some View {
         ZStack {
 
             LinearGradient(
-                colors: [.red, .purple, .green, .pink],
+                colors: colors,
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -23,6 +34,11 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .fontWeight(.semibold)
                 .foregroundStyle(.black)
+            
+        }
+        .onTapGesture {
+//            Change screen color if tapped
+            screenTapped.toggle()
             
         }
     }
