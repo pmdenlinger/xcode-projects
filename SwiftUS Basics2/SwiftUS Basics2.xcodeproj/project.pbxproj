@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		5B51864C2ED7782900277607 /* Tax Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tax Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B9BCADF2EDBA588004595A3 /* SwiftUS Basics2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUS Basics2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		5B51864E2ED7782900277607 /* Tax Calculator */ = {
+		5B9BCAE12EDBA588004595A3 /* SwiftUS Basics2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "Tax Calculator";
+			path = "SwiftUS Basics2";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5B5186492ED7782900277607 /* Frameworks */ = {
+		5B9BCADC2EDBA588004595A3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,18 +29,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B5186432ED7782900277607 = {
+		5B9BCAD62EDBA588004595A3 = {
 			isa = PBXGroup;
 			children = (
-				5B51864E2ED7782900277607 /* Tax Calculator */,
-				5B51864D2ED7782900277607 /* Products */,
+				5B9BCAE12EDBA588004595A3 /* SwiftUS Basics2 */,
+				5B9BCAE02EDBA588004595A3 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		5B51864D2ED7782900277607 /* Products */ = {
+		5B9BCAE02EDBA588004595A3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5B51864C2ED7782900277607 /* Tax Calculator.app */,
+				5B9BCADF2EDBA588004595A3 /* SwiftUS Basics2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,64 +48,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5B51864B2ED7782900277607 /* Tax Calculator */ = {
+		5B9BCADE2EDBA588004595A3 /* SwiftUS Basics2 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5B5186572ED7782B00277607 /* Build configuration list for PBXNativeTarget "Tax Calculator" */;
+			buildConfigurationList = 5B9BCAEA2EDBA58A004595A3 /* Build configuration list for PBXNativeTarget "SwiftUS Basics2" */;
 			buildPhases = (
-				5B5186482ED7782900277607 /* Sources */,
-				5B5186492ED7782900277607 /* Frameworks */,
-				5B51864A2ED7782900277607 /* Resources */,
+				5B9BCADB2EDBA588004595A3 /* Sources */,
+				5B9BCADC2EDBA588004595A3 /* Frameworks */,
+				5B9BCADD2EDBA588004595A3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				5B51864E2ED7782900277607 /* Tax Calculator */,
+				5B9BCAE12EDBA588004595A3 /* SwiftUS Basics2 */,
 			);
-			name = "Tax Calculator";
+			name = "SwiftUS Basics2";
 			packageProductDependencies = (
 			);
-			productName = "Tax Calculator";
-			productReference = 5B51864C2ED7782900277607 /* Tax Calculator.app */;
+			productName = "SwiftUS Basics2";
+			productReference = 5B9BCADF2EDBA588004595A3 /* SwiftUS Basics2.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5B5186442ED7782900277607 /* Project object */ = {
+		5B9BCAD72EDBA588004595A3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 2600;
 				TargetAttributes = {
-					5B51864B2ED7782900277607 = {
+					5B9BCADE2EDBA588004595A3 = {
 						CreatedOnToolsVersion = 26.0.1;
 					};
 				};
 			};
-			buildConfigurationList = 5B5186472ED7782900277607 /* Build configuration list for PBXProject "Tax Calculator" */;
+			buildConfigurationList = 5B9BCADA2EDBA588004595A3 /* Build configuration list for PBXProject "SwiftUS Basics2" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 5B5186432ED7782900277607;
+			mainGroup = 5B9BCAD62EDBA588004595A3;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 5B51864D2ED7782900277607 /* Products */;
+			productRefGroup = 5B9BCAE02EDBA588004595A3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B51864B2ED7782900277607 /* Tax Calculator */,
+				5B9BCADE2EDBA588004595A3 /* SwiftUS Basics2 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		5B51864A2ED7782900277607 /* Resources */ = {
+		5B9BCADD2EDBA588004595A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,7 +115,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5B5186482ED7782900277607 /* Sources */ = {
+		5B9BCADB2EDBA588004595A3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -125,7 +125,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		5B5186552ED7782B00277607 /* Debug */ = {
+		5B9BCAE82EDBA58A004595A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -189,7 +189,7 @@
 			};
 			name = Debug;
 		};
-		5B5186562ED7782B00277607 /* Release */ = {
+		5B9BCAE92EDBA58A004595A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,7 +246,7 @@
 			};
 			name = Release;
 		};
-		5B5186582ED7782B00277607 /* Debug */ = {
+		5B9BCAEB2EDBA58A004595A3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -266,7 +266,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "name.pauldenlinger.Tax-Calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "name.pauldenlinger.SwiftUS-Basics2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -278,7 +278,7 @@
 			};
 			name = Debug;
 		};
-		5B5186592ED7782B00277607 /* Release */ = {
+		5B9BCAEC2EDBA58A004595A3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -298,7 +298,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "name.pauldenlinger.Tax-Calculator";
+				PRODUCT_BUNDLE_IDENTIFIER = "name.pauldenlinger.SwiftUS-Basics2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -313,25 +313,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5B5186472ED7782900277607 /* Build configuration list for PBXProject "Tax Calculator" */ = {
+		5B9BCADA2EDBA588004595A3 /* Build configuration list for PBXProject "SwiftUS Basics2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5B5186552ED7782B00277607 /* Debug */,
-				5B5186562ED7782B00277607 /* Release */,
+				5B9BCAE82EDBA58A004595A3 /* Debug */,
+				5B9BCAE92EDBA58A004595A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B5186572ED7782B00277607 /* Build configuration list for PBXNativeTarget "Tax Calculator" */ = {
+		5B9BCAEA2EDBA58A004595A3 /* Build configuration list for PBXNativeTarget "SwiftUS Basics2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5B5186582ED7782B00277607 /* Debug */,
-				5B5186592ED7782B00277607 /* Release */,
+				5B9BCAEB2EDBA58A004595A3 /* Debug */,
+				5B9BCAEC2EDBA58A004595A3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 5B5186442ED7782900277607 /* Project object */;
+	rootObject = 5B9BCAD72EDBA588004595A3 /* Project object */;
 }

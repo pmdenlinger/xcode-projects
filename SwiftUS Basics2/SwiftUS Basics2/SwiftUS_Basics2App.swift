@@ -1,14 +1,14 @@
 //
-//  Tax_CalculatorApp.swift
-//  Tax Calculator
+//  SwiftUS_Basics2App.swift
+//  SwiftUS Basics2
 //
-//  Created by Paul Denlinger on 11/26/25.
+//  Created by Paul Denlinger on 11/29/25.
 //
 
 import SwiftUI
 
 @main
-struct Tax_CalculatorApp: App {
+struct SwiftUS_Basics2App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
