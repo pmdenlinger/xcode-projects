@@ -18,6 +18,7 @@ struct ContentView: View {
             Text( "Annual Salary" )
             
             TextField( "", text: $salary)
+            .frame(width: 200.0)
             .border(Color.black, width: 1)
             
         Button(action: {
