@@ -41,7 +41,15 @@ struct ResultsView: View {
             .font(.system(size: 32))
             .padding(.vertical)
         
+        Text("After Tax")
+        ProgressView("", value: 65, total: 100)
+        
+        Text("Tax")
+        ProgressView("", value: 65, total: 100)
+        
     }.padding()
+    
+    
 }
 }
 
