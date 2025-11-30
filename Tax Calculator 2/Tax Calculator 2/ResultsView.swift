@@ -47,6 +47,9 @@ struct ResultsView: View {
         Text("Tax")
         ProgressView("", value: 65, total: 100)
         
+        Text("Social Security")
+        ProgressView("", value: 20, total: 100)
+        
     }.padding()
     
     
