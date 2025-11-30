@@ -14,10 +14,13 @@ struct ResultsView: View {
     
     var body: some View
     {
-       PieChart()
-            .data(taxBreakdown)
-            .chartStyle(ChartStyle(backgroundColor: .white, foregroundColor: [ColorGradient(.blue, .purple)]))
-    }
+    VStack{
+    
+    PieChart()
+        .data(taxBreakdown)
+        .chartStyle(ChartStyle(backgroundColor: .white, foregroundColor: ColorGradient(.blue, .purple)))
+    }.padding()
+}
 }
 
 #Preview {
