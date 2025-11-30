@@ -23,9 +23,10 @@ struct ContentView: View {
         Button(action: {
             
         }, label: {
-            Text("Calculate Tax") }
+            Text("Calculate Tax")
+        })
             .buttonStyle(.borderedProminent)
-                )
+                
         }
         .padding()
     }
