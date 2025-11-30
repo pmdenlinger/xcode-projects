@@ -24,6 +24,7 @@ struct ContentView: View {
             
         }, label: {
             Text("Calculate Tax") }
+            .buttonStyle(.borderedProminent)
                 )
         }
         .padding()
