@@ -13,7 +13,7 @@ struct ContentView: View {
     let colorList2: [Color] = [.black, .white, .blue]
     
     @State private var screenTapped: Bool = false
-    @State private var offsetY: CGFloat = -300.0
+    @State private var offsetY: CGFloat = -1000.0
     
     var activeColor: [Color] {
         screenTapped ? colorList1 : colorList2
@@ -38,11 +38,19 @@ struct ContentView: View {
                 .fontWeight(.semibold)
                 .foregroundStyle(.black)
                 .offset(y: offsetY)
+               
             
             
         }
-        .onTapGesture {
+        .onTapGesture  {
             screenTapped.toggle()
+            withAnimation (.easeIn(duration: 3)) {
+                if screenTapped {
+                    offsetY = 1000
+                } else {
+                    offsetY = 0
+                }
+            }
         }
     }
 }
