@@ -16,10 +16,12 @@ struct ContentView: View {
         VStack
         {
             Text( "Annual Salary" )
+            .padding(.bottom, 75.0)
             
             TextField( "", text: $salary)
             .frame(width: 200.0)
             .border(Color.black, width: 1)
+            .padding(.bottom, 75.0)
             
         Button(action: {
             
