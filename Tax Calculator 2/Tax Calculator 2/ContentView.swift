@@ -13,30 +13,38 @@ struct ContentView: View {
     
     var body: some View
     {
+    NavigationView {
         VStack
         {
-            Text( "Annual Salary" )
+        Text( "Annual Salary" )
             .padding(.bottom, 75.0)
-            
-            TextField( "", text: $salary)
+        
+        TextField( "", text: $salary)
             .frame(width: 200.0)
             .border(Color.black, width: 1)
             .padding(.bottom, 75.0)
             .keyboardType(.decimalPad)
-            
-        Button(action: {
-            
-        }, label: {
+        
+        NavigationLink(destination: ResultsView(), label: {
             Text("Calculate Tax")
+                .bold()
+                .frame(width: 200.0, height: 50.0)
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
         })
-            .buttonStyle(.borderedProminent)
-                
         }
         .padding()
+        .navigationTitle("Main Page")
+    }
+    }
+    
+    func goToResultsView() {
+        ResultsView()
     }
 }
 
 #Preview {
     ContentView()
 }
-
+    
