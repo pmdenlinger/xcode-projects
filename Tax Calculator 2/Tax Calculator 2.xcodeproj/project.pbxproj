@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		5B9BCB062EDCC226004595A3 /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 5B9BCB052EDCC226004595A3 /* SwiftUICharts */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		5B9BCAF62EDBE1FA004595A3 /* Tax Calculator 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tax Calculator 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9BCB062EDCC226004595A3 /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = "Tax Calculator 2";
 			packageProductDependencies = (
+				5B9BCB052EDCC226004595A3 /* SwiftUICharts */,
 			);
 			productName = "Tax Calculator 2";
 			productReference = 5B9BCAF62EDBE1FA004595A3 /* Tax Calculator 2.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 5B9BCAED2EDBE1FA004595A3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				5B9BCB042EDCC226004595A3 /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 5B9BCAF72EDBE1FA004595A3 /* Products */;
 			projectDirPath = "";
@@ -332,6 +341,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5B9BCB042EDCC226004595A3 /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = exactVersion;
+				version = "2.0.0-beta.2";
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5B9BCB052EDCC226004595A3 /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5B9BCB042EDCC226004595A3 /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5B9BCAEE2EDBE1FA004595A3 /* Project object */;
 }
