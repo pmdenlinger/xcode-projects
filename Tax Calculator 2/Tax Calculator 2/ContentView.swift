@@ -22,6 +22,7 @@ struct ContentView: View {
             .frame(width: 200.0)
             .border(Color.black, width: 1)
             .padding(.bottom, 75.0)
+            .keyboardType(.decimalPad)
             
         Button(action: {
             
