@@ -17,7 +17,7 @@ struct ContentView: View {
         {
             Text( "Annual Salary" )
             
-            TextField( "Salary", text: $salary)
+            TextField( "", text: $salary)
             .border(Color.black, width: 1)
             
         Button(action: {
