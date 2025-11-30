@@ -24,6 +24,23 @@ struct ResultsView: View {
     PieChart()
         .data(taxBreakdown)
         .chartStyle(ChartStyle(backgroundColor: .white, foregroundColor: ColorGradient(.blue, .purple)))
+        
+        Text("Before Tax")
+            .font(.system(size: 32))
+            .padding(.vertical)
+        
+        Text("$100,000.00")
+            .font(.system(size: 32))
+            .padding(.vertical)
+        
+        Text("After Tax")
+            .font(.system(size: 32))
+            .padding(.vertical)
+        
+        Text("$65,000.00")
+            .font(.system(size: 32))
+            .padding(.vertical)
+        
     }.padding()
 }
 }
