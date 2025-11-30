@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SwiftUICharts
-
 struct ResultsView: View {
     
     var taxBreakdown: [Double] = [5, 10, 15]
@@ -16,9 +15,6 @@ struct ResultsView: View {
     {
     VStack{
         
-        Text("Summary")
-            .font(.system(size: 36))
-            .fontWeight(.bold)
             
     
     PieChart()
@@ -51,6 +47,7 @@ struct ResultsView: View {
         ProgressView("", value: 20, total: 100)
         
     }.padding()
+        .navigationBarTitle("Summary")
     
     
 }
