@@ -7,19 +7,20 @@
 
 import SwiftUI
 import SwiftUICharts
-struct ResultsView: View {
+struct ResultsView: View
+{
     
+//    @Binding var salary: String
     var taxBreakdown: [Double] = [5, 10, 15]
     
     var body: some View
     {
-    VStack{
-        
-            
-    
-    PieChart()
-        .data(taxBreakdown)
-        .chartStyle(ChartStyle(backgroundColor: .white, foregroundColor: ColorGradient(.blue, .purple)))
+    VStack
+        {
+            PieChart()
+                .data(taxBreakdown)
+                .chartStyle(ChartStyle(backgroundColor: .white, foregroundColor:
+                                        ColorGradient(.blue, .purple)))
         
         Text("Before Tax")
             .font(.system(size: 32))
@@ -37,22 +38,28 @@ struct ResultsView: View {
             .font(.system(size: 32))
             .padding(.vertical)
         
-        Text("After Tax")
-        ProgressView("", value: 65, total: 100)
-        
-        Text("Tax")
-        ProgressView("", value: 65, total: 100)
-        
-        Text("Social Security")
-        ProgressView("", value: 20, total: 100)
-        
-    }.padding()
+        Group
+            {
+            
+            Text("After Tax Salary")
+            ProgressView("", value: 65, total: 100)
+            
+            Text("Tax")
+            ProgressView("", value: 65, total: 100)
+            
+            Text("Social Security")
+            ProgressView("", value: 20, total: 100)
+            }
+        }.padding()
         .navigationBarTitle("Summary")
-    
-    
-}
+    }
 }
 
-#Preview {
+struct ResultsView_Previews: PreviewProvider
+{
+    static var previews: some View
+    {
     ResultsView()
+    }
 }
+
