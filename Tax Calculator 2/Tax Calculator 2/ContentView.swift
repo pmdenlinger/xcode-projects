@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View
 {
     @State private var salary: String = ""
-        //    @State private var isSalaryValid: Bool = false
+    @State private var isSalaryValid: Bool = false
     
     var body: some View
     {
@@ -18,7 +18,7 @@ struct ContentView: View
         {
         VStack
             {
-            Text("Annual Salary")
+            Text( "Annual Salary" )
                 .padding(.bottom, 75.0)
             
             TextField("", text: $salary)
@@ -26,26 +26,27 @@ struct ContentView: View
                 .border(Color.black, width: 1)
                 .padding(.bottom, 75.0)
                 .keyboardType(.decimalPad)
-            
-            NavigationLink
-            (
-                Text("Calculate Tax")
+
+            NavigationLink( destination: ResultsView(), isActive: $isSalaryValid, label:
+            {
+                Text( "Calculate Tax" )
                     .bold()
-                    .frame(width: 200.0, height: 50.0)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .frame(width: 200.0, height: 50.0)                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
             })
+            }
+            .padding()
+            .navigationTitle("Main Page")
         }
-        .padding()
-        .navigationTitle("Main Page")
     }
 }
-}
+
                 
 struct ContentView_Previews: PreviewProvider
 {
-    static var previews: some View {
+    static var previews: some View
+    {
         ContentView()
     }
 }
