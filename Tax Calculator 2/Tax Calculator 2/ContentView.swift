@@ -27,27 +27,40 @@ struct ContentView: View
                 .padding(.bottom, 75.0)
                 .keyboardType(.decimalPad)
 
-            NavigationLink( destination: ResultsView(), isActive: $isSalaryValid, label:
-            {
-                Text( "Calculate Tax" )
-                    .bold()
-                    .frame(width: 200.0, height: 50.0)                .background(Color.blue)
-                .foregroundColor(.white)
+            NavigationLink( destination: ResultsView( salary: $salary), isActive: $isSalaryValid, label:
+                                {
+            Text( "Calculate Tax" )
+                .bold()
+                .frame(width: 200.0, height: 50.0)
+                .background(Color.blue)
+                .foregroundColor(Color.white)
                 .cornerRadius(10)
+                .onTapGesture {
+                    GoToResultsView()
+                }
             })
             }
             .padding()
             .navigationTitle("Main Page")
         }
     }
-}
-
-                
-struct ContentView_Previews: PreviewProvider
-{
-    static var previews: some View
+    func GoToResultsView()
     {
-        ContentView()
+    if ( Float( salary ) != nil )
+    {
+    if ( Float( salary )! >= 0 )
+    {
+    isSalaryValid = true }
+    }
+    }
+    
+    
+    struct ContentView_Previews: PreviewProvider
+    {
+    static var previews: some View
+        {
+        ResultsView(salary: .constant("50000"))
+        }
     }
 }
 

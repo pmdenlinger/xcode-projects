@@ -10,7 +10,7 @@ import SwiftUICharts
 struct ResultsView: View
 {
     
-//    @Binding var salary: String
+    @Binding var salary: String
     var taxBreakdown: [Double] = [5, 10, 15]
     
     var body: some View
@@ -59,7 +59,7 @@ struct ResultsView_Previews: PreviewProvider
 {
     static var previews: some View
     {
-    ResultsView()
+    ResultsView(salary: .constant("100000"))
     }
 }
 
