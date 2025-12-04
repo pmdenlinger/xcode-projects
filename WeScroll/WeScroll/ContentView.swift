@@ -27,8 +27,20 @@ struct ContentView: View {
                 }
             }
             .frame(width: 50, height: 200)
-            
-            
+            ScrollView(.horizontal) {
+                HStack {
+                    ForEach(letters, id: \.self) { letter in
+                        Image(systemName: letter)
+                            .font(.largeTitle)
+                            .foregroundStyle(.yellow)
+                            .frame(width: 50, height: 50)
+                            .background( .blue)
+                            .symbolVariant(.circle.fill)
+                        
+                    }
+                }
+                
+            }
         }
     }
 }
