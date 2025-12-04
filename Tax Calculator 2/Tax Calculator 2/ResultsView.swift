@@ -14,8 +14,43 @@ struct ResultsView: View
     var taxBreakdown: [Double] = [5, 10, 15]
     
     var body: some View
-    {
-    VStack
+    let salaryNum = Double( salary )!
+    var incomeTax: Double = 0
+    var socialSecurity: Double = 0
+    
+    if ( salaryNum > 12570 )
+        {
+            if ( salaryNum < 37700 )
+            {
+                if ( salaryNum > 150000 )
+                {
+                incomeTax += (37700 - 12571) * 0.2
+                incomeTax += (150000 - 37701) * 0.4
+                incomeTax += (salaryNum - 150000) * 0.45
+                }
+                else
+                {
+                    incomeTax += (37700 - 12571) * 0.2
+                    incomeTax += (salaryNum - 37701) * 0.4
+                }
+            }
+        else
+        {
+        incomeTax += (salaryNum - 12571) * 0.2
+        socialSecurity += salaryNum * 0.12
+        let afterTaxSalary = salaryNum - incomeTax - socialSecurity
+
+        let salaryString = String( format: "%.2f", salaryNum )
+        let afterTaxSalaryString = String( format: "%.2f", afterTaxSalary )
+        let incomeTaxString = String( format: "%.2f", incomeTax )
+        let socialSecurityString = String( format: "%.2f", socialSecurity )
+        
+        let taxBreadkdown: [Double] = [ afterTaxSalary, incomeTax, socialSecurity  ]
+        }
+        
+            
+        
+return VStack
         {
             PieChart()
                 .data(taxBreakdown)
@@ -26,7 +61,7 @@ struct ResultsView: View
             .font(.system(size: 32))
             .padding(.vertical)
         
-        Text("$100,000.00")
+        Text( salaryString )
             .font(.system(size: 32))
             .padding(.vertical)
         
@@ -34,7 +69,7 @@ struct ResultsView: View
             .font(.system(size: 32))
             .padding(.vertical)
         
-        Text("$65,000.00")
+        Text( afterTaxSalaryString )
             .font(.system(size: 32))
             .padding(.vertical)
         
@@ -42,13 +77,12 @@ struct ResultsView: View
             {
             
             Text("After Tax Salary")
-            ProgressView("", value: 65, total: 100)
+            ProgressView( afterTaxSalaryString, value: afterTaxSalary / salaryNum * 100, total: 100)
             
             Text("Tax")
-            ProgressView("", value: 65, total: 100)
-            
+            ProgressView( incomeTaxString, value: incomeTax / salaryNum * 100, total: 100)
             Text("Social Security")
-            ProgressView("", value: 20, total: 100)
+            ProgressView( so, value: 13, total: 100)
             }
         }.padding()
         .navigationBarTitle("Summary")
