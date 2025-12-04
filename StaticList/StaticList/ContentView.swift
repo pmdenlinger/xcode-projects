@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WeatherInfo: Identifiable {
-    var id: UUID()
+    var id = UUID()
     var image: String
     var temp: Int
     var city: String
