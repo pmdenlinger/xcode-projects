@@ -19,10 +19,22 @@ struct ContentView: View {
                     Text("\(number)")
                 }
             }
+            .navigationTitle("Number List")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                Button("Add") {
+                    addItemToRow()
+                }
+            }
+            
         }
+    }
+    private func addItemToRow() {
+        self.numbers.append(Int.random(in: 5 ..< 100))
     }
 }
 
-#Preview {
-    ContentView()
-}
+    #Preview {
+        ContentView()
+    }
+
