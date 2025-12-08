@@ -5,7 +5,7 @@ enum Result {
     case lose(commiserations: String)
 }
 
-func printMessage(forResult result: Result) {
+func printMessage(forResult result: FrameResult) {
     if case Result.win(congratulations: let winMessage) = result {
         print("You won! \(winMessage)")
     } else if Result.lose(commiserations: let loseMessage) = result {
