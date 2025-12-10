@@ -1,0 +1,124 @@
+I checked my theme setting in Xcode and tried to reset the values for appearance, but still there is no code completion and syntax highlighting in my playground. What else can I try to fix this issue?
+import CoreLocation
+
+protocol TransportMethod {
+    associatedtype CollectionPoint: TransportLocation
+    var defaultCollectionPoint: CollectionPoint { get }
+    var averageSpeedInKPH: Double { get }
+}
+
+struct Train: TransportMethod {
+    typealias CollectionPoint = TrainStation
+    
+        //    User's home or nearest station
+    var defaultCollectionPoint: CollectionPoint {
+        return TrainStation.BMS
+    }
+    
+    var averageSpeedInKPH: Double {
+        return 100
+    }
+}
+
+protocol TransportLocation {
+    var location: CLLocation { get }
+}
+
+enum TrainStation: String, TransportLocation {
+    case BMS = "Bromley South"
+    case VIC = "London Victoria"
+    case RAI = "Rainham Kent"
+    case BTN = "Brighton (East Sussex)"
+    
+    var location: CLLocation {
+        switch self {
+            case .BMS:
+                return CLLocation(latitude: 51.4036, longitude: 0.0153)
+            case .VIC:
+                return CLLocation(latitude: 51.4952, longitude: -0.1446)
+            case .RAI:
+                return CLLocation(latitude: 51.3810, longitude: 0.5595)
+            case .BTN:
+                return CLLocation(latitude: 50.8284, longitude: -0.1393)
+        }
+    }
+}
+
+// Part 2: Road transport method
+enum Road: TransportMethod {
+    typealias CollectionPoint = CLLocation
+    
+    case car
+    case motorbike
+    case van
+    case hgv
+    
+//    The users home or current location
+    var defaultCollectionPoint: CLLocation {
+        return CLLocation(latitude: 51.4036, longitude: 0.0153)
+    }
+    
+    var averageSpeedInKPH: Double {
+        switch self {
+        case .car:
+            return 60
+        case .motorbike:
+            return 70
+        case .van:
+            return 50
+        case .hgv:
+            return 40
+        }
+    }
+}
+
+extension CLLocation: TransportLocation {
+    var location: CLLocation {
+        return self
+    }
+}
+
+class Journey<TransportType: TransportMethod> {
+    
+    var start: TransportType.CollectionPoint
+    var end: TransportType.CollectionPoint
+    let method: TransportType
+    var distanceInKMs: Double
+    var durationInHours: Double
+    
+    init(method: TransportType,
+         start: TransportType.CollectionPoint,
+         end: TransportType.CollectionPoint) {
+        self.start = start
+        self.end = end
+        self.method = method
+            //        CoreLocation provides the distance in meters,
+            //        so we divide by 1000 to get kilometers
+        distanceInKMs = end.location.distance(from: start.location) / 1000
+        durationInHours = distanceInKMs / method.averageSpeedInKPH
+    }
+}
+
+
+let trainJourney = Journey(method: Train(),
+                           start: TrainStation.BMS,
+                           end: TrainStation.VIC)
+let distanceByTrain = trainJourney.distanceInKMs
+let durationByTrain = trainJourney.durationInHours
+print("Journey distance: \(distanceByTrain) km")
+print("Estimated duration: \(durationByTrain) hours")
+
+// Road journey example
+let roadJourney = Journey(method: Road.car,
+                         start: CLLocation(latitude: 51.4036, longitude: 0.0153), // Bromley South area
+                         end: CLLocation(latitude: 51.4952, longitude: -0.1446))   // London Victoria area
+let distanceByRoad = roadJourney.distanceInKMs
+let durationByRoad = roadJourney.durationInHours
+print("Road journey distance: \(distanceByRoad) km")
+print("Road journey duration: \(durationByRoad) hours")
+
+
+
+
+        
+    
