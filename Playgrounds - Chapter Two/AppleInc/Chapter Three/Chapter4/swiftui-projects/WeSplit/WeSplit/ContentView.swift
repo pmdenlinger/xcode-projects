@@ -18,7 +18,8 @@ struct ContentView: View {
     var body: some View {
         Form {
             Section {
-                TextField("Amount", text: $checkAmount)
+                TextField("Amount", text: $checkAmount,
+                          format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
             }
         }
     }
