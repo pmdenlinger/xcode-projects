@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var name = ""
+    let students = ["Harry", "Hermione", "Ron"]
+    @State private var selectedStudent = "Harry"
     
     var body: some View {
         
@@ -17,21 +18,22 @@ struct ContentView: View {
             
             Form {
                 
-                    TextField("Enter your name", text: $name)
-                    Text("Your name is \(name)")
-                
+                Picker("Select your student", selection: $selectedStudent) {
+                    ForEach(students, id: \.self) {
+                        Text($0)
+                    }
                 }
                 
-                
-                
             }
-            .navigationTitle(Text("WeSplit"))
-            .navigationBarTitleDisplayMode(.inline)
-            
+                
         }
-        
-        
+        .navigationTitle(Text("WeSplit"))
+        .navigationBarTitleDisplayMode(.inline)
+            
     }
+        
+        
+}
 
 
 #Preview {
