@@ -8,16 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var name = ""
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        NavigationStack {
+            
+            Form {
+                
+                    TextField("Enter your name", text: $name)
+                    Text("Your name is \(name)")
+                
+                }
+                
+                
+                
+            }
+            .navigationTitle(Text("WeSplit"))
+            .navigationBarTitleDisplayMode(.inline)
+            
         }
-        .padding()
+        
+        
     }
-}
+
 
 #Preview {
     ContentView()
