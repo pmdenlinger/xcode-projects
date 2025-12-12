@@ -21,6 +21,12 @@ struct ContentView: View {
                 TextField("Amount", value: $checkAmount,
                           format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                 .keyboardType(.decimalPad)
+                
+                Picker("Number of people", selection: $numberOfPeople) {
+                    ForEach(2..<100) {
+                        Text("\($0) people")
+                    }
+                }
             }
             
         }
