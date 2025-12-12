@@ -60,6 +60,10 @@ struct ContentView: View {
                                                             Locale.current.currency?.identifier ?? "USD"))
                 }
                 
+                Section ("Total check amount") {
+                    Text("\(checkAmount)")
+                }
+                
             }
             .navigationTitle(Text("WeSplit"))
             .toolbar {
