@@ -51,6 +51,11 @@ struct ContentView: View {
                     .pickerStyle(SegmentedPickerStyle())
                 }
                 
+                Section {
+                    Text(totalPerPerson, format: .currency(code:
+                                                            Locale.current.currency?.identifier ?? "USD"))
+                }
+                
             }
             .navigationTitle(Text("WeSplit"))
             
