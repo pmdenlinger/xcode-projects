@@ -27,6 +27,7 @@ struct ContentView: View {
                         Text("\($0) people")
                     }
                 }
+                .pickerStyle(.navigationLink)
             }
             
         }
