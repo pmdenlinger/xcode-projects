@@ -32,8 +32,10 @@ struct ContentView: View {
                 }
                 
             }
+            .navigationTitle(Text("WeSplit"))
             
         }
+        
         
     }
 }
