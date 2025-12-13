@@ -25,8 +25,9 @@ struct ContentView: View {
                 Button("Hello, world!") {
                     print(type(of: self.body))
                 }
-                .background(.red)
+                
                 .frame(width: 200, height: 200)
+                .background(.red)
             
         }
     }
