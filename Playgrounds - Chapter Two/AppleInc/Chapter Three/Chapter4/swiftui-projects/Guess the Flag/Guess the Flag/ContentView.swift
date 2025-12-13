@@ -10,8 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Button("Delete selection", action: executeDelete)
+            Button("Delete selection", role: .destructive, action: executeDelete)
         }
+        .buttonStyle(.borderedProminent)
     }
     
     func executeDelete() {
