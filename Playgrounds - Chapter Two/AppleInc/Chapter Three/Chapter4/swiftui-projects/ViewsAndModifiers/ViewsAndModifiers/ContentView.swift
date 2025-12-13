@@ -12,22 +12,22 @@ struct ContentView: View {
         
         VStack {
             
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
-                Text("Hello, world!")
-            }
-            .padding()
+           
+                Button("Hello, world!") {
+                        // do nothing
+                }
+                .background(.red)
+                .frame(width: 200, height: 200)
             
-            VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundStyle(.tint)
-                Text("Hello, world!")
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(.red)
+            
+            
+            
+                Button("Hello, world!") {
+                    print(type(of: self.body))
+                }
+                .background(.red)
+                .frame(width: 200, height: 200)
+            
         }
     }
 }
