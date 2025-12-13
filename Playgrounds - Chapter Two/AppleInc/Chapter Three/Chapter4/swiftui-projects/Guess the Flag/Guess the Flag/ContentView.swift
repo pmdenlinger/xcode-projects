@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        
         VStack {
-            Text("Your content")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .foregroundColor(.white)
-                .background(.red.gradient)
+            Button("Delete selection", action: executeDelete)
         }
-        .ignoresSafeArea()
+    }
+    
+    func executeDelete() {
+        print("Performing delete")
     }
 }
+
     
     #Preview {
         ContentView()
