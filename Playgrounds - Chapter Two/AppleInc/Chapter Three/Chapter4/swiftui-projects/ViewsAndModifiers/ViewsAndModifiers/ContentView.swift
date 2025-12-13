@@ -13,22 +13,15 @@ struct ContentView: View {
         VStack {
             
            
-                Button("Hello, world!") {
-                        // do nothing
-                }
-                .background(.red)
-                .frame(width: 200, height: 200)
-            
-            
-            
-            
-                Button("Hello, world!") {
-                    print(type(of: self.body))
-                }
-                
-                .frame(width: 200, height: 200)
-                .background(.red)
-            
+                Text("Hello, world!")
+                .padding()
+                .background(Color.red)
+                .padding()
+                .background(Color.blue)
+                .padding()
+                .background(Color.green)
+                .padding()
+                .background(Color.yellow)
         }
     }
 }
