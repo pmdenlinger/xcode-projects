@@ -38,24 +38,29 @@ struct ContentView: View {
                 VStack {
                     Text("Tap the flag of")
                         .foregroundColor(.white)
-                        
+                    
                     Text(countries[correctAnswer])
                 }
                 
                 ForEach(0..<3) { number in
                     Button {
-                            flagTapped(number)
+                        flagTapped(number)
                     } label: {
                         Image(countries[number])
                     }
                 }
             }
         }
+        .alert(scoreTitle, isPresented: $showingScore) {
+            Button("Continue", action: askQuestion)
+        } message: {
+            Text("Your score is \(scoreTitle)")
+        }
     }
 }
-    
     #Preview {
         ContentView()
     }
+
 
 
