@@ -76,7 +76,7 @@ struct ContentView: View {
                 .clipShape(.rect(cornerRadius: 20))
                 
             }
-            .padding(30)
+            .padding()
         }
         .alert(scoreTitle, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
