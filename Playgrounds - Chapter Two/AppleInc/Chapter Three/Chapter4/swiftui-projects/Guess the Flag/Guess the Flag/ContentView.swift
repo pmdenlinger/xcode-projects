@@ -9,16 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack  {
-            VStack (spacing: 0) {
-                Color.red
-                Color.blue
-            }
-            
+        
+        VStack {
             Text("Your content")
-                .foregroundStyle(.secondary)
-                .padding(50)
-                .background(.ultraThinMaterial)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .foregroundColor(.white)
+                .background(.red.gradient)
         }
         .ignoresSafeArea()
     }
