@@ -22,7 +22,7 @@ struct ContentView: View {
         var components = DateComponents()
         components.hour = 7
         components.minute = 0
-        return Calendar.current.date(from: components) ?? .now
+        return Calendar.current.date(from: components) ?? defaultWakeTime
     }
     
     func calculateBedtime() {
