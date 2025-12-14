@@ -77,7 +77,7 @@ struct ContentView: View {
                 Text("Daily coffee intake")
                     .font(.headline)
                 
-                Stepper("\(coffeeAmount) cup(s)", value : $coffeeAmount, in: 1...20)
+                Stepper("^[\(coffeeAmount) cup](inflect: true)", value : $coffeeAmount, in: 1...20)
                 
                 
             }
