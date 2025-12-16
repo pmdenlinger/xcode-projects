@@ -18,6 +18,11 @@ struct ContentView: View {
         // we don't add duplicate words with case differences
         let answer =
         newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        // exit if the remaining string is empty
+        guard answer.count is > 0 else { return }
+        // extra validation to come
+        usedWords.insert(answer, at: 0)
+        newWord = ""
     }
     
     var body: some View {
