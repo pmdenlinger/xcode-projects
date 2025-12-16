@@ -39,6 +39,7 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Word Scramble")
+            .onSubmit(addNewWord)
         }
         
     }
