@@ -13,6 +13,13 @@ struct ContentView: View {
     @State private var rootWord = ""
     @State private var newWord = ""
     
+    func addNewWord() {
+        // Lowercase and trim the word, to make sure
+        // we don't add duplicate words with case differences
+        let answer =
+        newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
     var body: some View {
         NavigationStack {
             List {
