@@ -1,4 +1,3 @@
-//
 //  ContentView.swift
 //  WordScramble
 //
@@ -19,7 +18,7 @@ struct ContentView: View {
         let answer =
         newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         // exit if the remaining string is empty
-        guard answer.count is > 0 else { return }
+        guard answer.count > 0 else { return }
         // extra validation to come
         usedWords.insert(answer, at: 0)
         newWord = ""
@@ -30,6 +29,7 @@ struct ContentView: View {
             List {
                 Section {
                     TextField("Enter your word", text: $newWord)
+                        .textInputAutocapitalization(.never)
                 }
                 
                 Section {
