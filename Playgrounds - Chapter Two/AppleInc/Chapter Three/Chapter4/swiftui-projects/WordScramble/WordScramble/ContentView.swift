@@ -14,6 +14,19 @@ struct ContentView: View {
     @State private var newWord = ""
     
     var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    TextField("Enter your word", text: $newWord)
+                }
+                
+                Section {
+                    ForEach(usedWords, id: \.self) { word in
+                        Text(word)
+                    }
+                }
+            }
+        }
         
     }
 }
