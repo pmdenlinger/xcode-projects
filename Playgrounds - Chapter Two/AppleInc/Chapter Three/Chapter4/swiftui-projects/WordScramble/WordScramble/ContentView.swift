@@ -20,7 +20,7 @@ struct ContentView: View {
         // 1. Find the URL for start.txt in our app bundle
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             // 2. Load start.txt into a string
-            if let startWords = try? String(contentsOf: startWordsURL) {
+            if let startWords = try? String(contentsOf: startWordsURL, encoding: .utf8) {
                 // 3. Split the string up into an array of strings,
                 //   separating on line breaks
                 let allWords = startWords.components(separatedBy: "\n")
@@ -121,7 +121,7 @@ struct ContentView: View {
             .onSubmit(addNewWord)
             .onAppear(perform: startGame)
             .alert(errorTitle, isPresented: $showingError) {
-                Button("OK") { }
+                Button("OK", role: .cancel) { }
             } message: {
                 Text(errorMessage)
             }
