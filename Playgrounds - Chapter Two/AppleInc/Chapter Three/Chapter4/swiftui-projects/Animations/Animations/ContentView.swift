@@ -22,6 +22,12 @@ struct ContentView: View {
             .clipShape(Circle())
             .scaleEffect(animationAmount)
             .blur(radius: (animationAmount - 1) * 3)
+            .overlay(
+                Circle()
+                    .stroke(.red)
+                    .scaleEffect(animationAmount)
+                    .opacity(2 - animationAmount)
+            )
             .animation(
                 .easeInOut(duration: 1)
                     .repeatCount(3, autoreverses: true),
