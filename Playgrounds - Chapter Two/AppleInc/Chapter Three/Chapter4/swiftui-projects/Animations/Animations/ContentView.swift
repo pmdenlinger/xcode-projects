@@ -30,6 +30,9 @@ struct ContentView: View {
                     .repeatForever(autoreverses: false),
                 value: animationAmount
             )
+            .onAppear {
+                animationAmount = 2
+            }
         )
         }
     }
