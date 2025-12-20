@@ -13,9 +13,10 @@ struct ContentView: View {
     
     var body: some View {
         Button("Tap Me") {
-            withAnimation {
-                animationAmount += 360
-            }
+            withAnimation (
+                .spring(duration: 1, bounce: 0.5)) {
+                    animationAmount += 360
+                }
         }
         .padding(50)
         .background(.red)
@@ -27,9 +28,11 @@ struct ContentView: View {
         
     }
 }
+    
+    
+    
+    
+    #Preview {
+        ContentView()
+    }
 
-
-
-#Preview {
-    ContentView()
-}
