@@ -19,6 +19,7 @@ struct ContentView: View {
         .background(enabled ? .blue : .red)
         .foregroundStyle(.white)
         .animation(.default, value: enabled)
+        .clipShape(.rect(cornerRadius: enabled ? 60 : 0))
     }
 }
 
