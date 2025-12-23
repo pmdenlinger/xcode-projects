@@ -15,8 +15,8 @@ struct ContentView: View {
         Button("Tap Me") {
 //            Do nothing
         }
-        .background(.blue)
         .frame(width: 200, height: 200)
+        .background(.blue)
         .foregroundStyle(.white)
     }
 }
