@@ -9,15 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var animationAmount = 0.0
+    @State private var enabled = false
     
     var body: some View {
         Button("Tap Me") {
-//            Do nothing
+            enabled.toggle()
         }
         .frame(width: 200, height: 200)
-        .background(.blue)
+        .background(enabled ? .blue : .red)
         .foregroundStyle(.white)
+        .animation(.default, value: enabled)
     }
 }
 
