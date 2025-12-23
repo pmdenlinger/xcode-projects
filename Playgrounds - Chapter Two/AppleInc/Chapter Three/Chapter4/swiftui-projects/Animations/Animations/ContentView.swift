@@ -18,6 +18,11 @@ struct ContentView: View {
         .frame(width: 300, height: 200)
         .clipShape(.rect(cornerRadius: 10))
         .offset(dragAmount)
+        .gesture(
+            DragGesture()
+                .onChanged { dragAmount = $0.translation }
+                .onEnded { _ in dragAmount = .zero }
+            )
         
         
     }
