@@ -1,0 +1,781 @@
+// MARK: - Economic Data Visualization App
+// Turning IMF & World Bank data into actionable insights through Swift Charts
+
+import Foundation
+import SwiftUI // For Charts framework integration
+
+print("=== ECONOMIC DATA VISUALIZATION PROJECT ===")
+print("From raw data to trend insights! 📊💡\n")
+
+// MARK: - Core Data Models (Structs for Performance)
+
+/// Represents a single economic data point from IMF/World Bank
+struct EconomicDataPoint {
+    let id: UUID
+    let countryCode: String
+    let countryName: String
+    let indicatorCode: String
+    let indicatorName: String
+    let year: Int
+    let value: Double?
+    let unit: String
+    let sourceDatabase: DataSource
+    let lastUpdated: Date
+    
+    // Computed properties for analysis
+    var isValid: Bool {
+        return value != nil && value! > 0
+    }
+    
+    var displayValue: String {
+        guard let value = value else { return "N/A" }
+        return value.formatted(.number.precision(.fractionLength(2)))
+    }
+}
+
+/// Data source identification
+enum DataSource: String, CaseIterable, Codable {
+    case imf = "IMF"
+    case worldBank = "World Bank"
+    case combined = "Combined"
+    
+    var fullName: String {
+        switch self {
+        case .imf: return "International Monetary Fund"
+        case .worldBank: return "World Bank"
+        case .combined: return "Combined Sources"
+        }
+    }
+}
+
+/// Economic indicators we'll focus on
+enum EconomicIndicator: String, CaseIterable, Codable {
+    // GDP Indicators
+    case gdpCurrent = "NY.GDP.MKTP.CD"
+    case gdpPerCapita = "NY.GDP.PCAP.CD"
+    case gdpGrowth = "NY.GDP.MKTP.KD.ZG"
+    
+    // Inflation & Monetary
+    case inflation = "FP.CPI.TOTL.ZG"
+    case interestRate = "FR.INR.RINR"
+    case exchangeRate = "PA.NUS.FCRF"
+    
+    // Trade & Balance
+    case currentAccount = "BN.CAB.XOKA.GD.ZS"
+    case tradeBalance = "BN.GSR.GNFS.CD"
+    case exports = "NE.EXP.GNFS.CD"
+    case imports = "NE.IMP.GNFS.CD"
+    
+    // Employment & Social
+    case unemployment = "SL.UEM.TOTL.ZS"
+    case laborForce = "SL.TLF.TOTL.IN"
+    case population = "SP.POP.TOTL"
+    
+    // Debt & Fiscal
+    case governmentDebt = "GC.DOD.TOTL.GD.ZS"
+    case fiscalBalance = "GC.BAL.CASH.GD.ZS"
+    
+    var displayName: String {
+        switch self {
+        case .gdpCurrent: return "GDP (Current USD)"
+        case .gdpPerCapita: return "GDP per Capita"
+        case .gdpGrowth: return "GDP Growth Rate"
+        case .inflation: return "Inflation Rate"
+        case .interestRate: return "Interest Rate"
+        case .exchangeRate: return "Exchange Rate"
+        case .currentAccount: return "Current Account Balance"
+        case .tradeBalance: return "Trade Balance"
+        case .exports: return "Exports"
+        case .imports: return "Imports"
+        case .unemployment: return "Unemployment Rate"
+        case .laborForce: return "Labor Force"
+        case .population: return "Population"
+        case .governmentDebt: return "Government Debt"
+        case .fiscalBalance: return "Fiscal Balance"
+        }
+    }
+    
+    var unit: String {
+        switch self {
+        case .gdpCurrent, .exports, .imports, .tradeBalance:
+            return "USD"
+        case .gdpPerCapita:
+            return "USD per capita"
+        case .gdpGrowth, .inflation, .unemployment, .currentAccount, .governmentDebt, .fiscalBalance:
+            return "Percentage"
+        case .interestRate:
+            return "Percent per annum"
+        case .exchangeRate:
+            return "Local currency per USD"
+        case .laborForce, .population:
+            return "Count"
+        }
+    }
+}
+
+/// Country information with economic context
+struct Country {
+    let code: String
+    let name: String
+    let region: String
+    let incomeGroup: IncomeGroup
+    let currency: String
+    let population: Int?
+    
+    // Computed properties
+    var isLargeEconomy: Bool {
+        guard let pop = population else { return false }
+        return pop > 50_000_000
+    }
+}
+
+enum IncomeGroup: String, CaseIterable, Codable {
+    case lowIncome = "Low income"
+    case lowerMiddleIncome = "Lower middle income"
+    case upperMiddleIncome = "Upper middle income"
+    case highIncome = "High income"
+}
+
+// MARK: - Time Series Analysis Models
+
+/// Represents a complete time series for one indicator/country combination
+struct EconomicTimeSeries {
+    let country: Country
+    let indicator: EconomicIndicator
+    let dataPoints: [EconomicDataPoint]
+    let dateRange: ClosedRange<Int>
+    
+    // Computed analysis properties
+    var trend: TrendDirection {
+        return calculateTrend()
+    }
+    
+    var volatility: VolatilityLevel {
+        return calculateVolatility()
+    }
+    
+    var latestValue: Double? {
+        return dataPoints.sorted { $0.year < $1.year }.last?.value
+    }
+    
+    var averageValue: Double {
+        let validValues = dataPoints.compactMap { $0.value }
+        return validValues.isEmpty ? 0 : validValues.reduce(0, +) / Double(validValues.count)
+    }
+    
+    // Trend analysis
+    private func calculateTrend() -> TrendDirection {
+        let validPoints = dataPoints.filter { $0.isValid }.sorted { $0.year < $1.year }
+        guard validPoints.count >= 3 else { return .unknown }
+        
+        let recent = validPoints.suffix(3).compactMap { $0.value }
+        let earlier = validPoints.prefix(3).compactMap { $0.value }
+        
+        let recentAvg = recent.reduce(0, +) / Double(recent.count)
+        let earlierAvg = earlier.reduce(0, +) / Double(earlier.count)
+        
+        let change = (recentAvg - earlierAvg) / earlierAvg
+        
+        if change > 0.05 { return .upward }
+        else if change < -0.05 { return .downward }
+        else { return .stable }
+    }
+    
+    private func calculateVolatility() -> VolatilityLevel {
+        let values = dataPoints.compactMap { $0.value }
+        guard values.count > 1 else { return .unknown }
+        
+        let mean = values.reduce(0, +) / Double(values.count)
+        let variance = values.map { pow($0 - mean, 2) }.reduce(0, +) / Double(values.count)
+        let standardDeviation = sqrt(variance)
+        let coefficientOfVariation = standardDeviation / mean
+        
+        if coefficientOfVariation < 0.1 { return .low }
+        else if coefficientOfVariation < 0.3 { return .medium }
+        else { return .high }
+    }
+}
+
+enum TrendDirection: String {
+    case upward = "↗️ Upward"
+    case downward = "↘️ Downward" 
+    case stable = "→ Stable"
+    case unknown = "? Unknown"
+    
+    var emoji: String {
+        switch self {
+        case .upward: return "📈"
+        case .downward: return "📉"
+        case .stable: return "➡️"
+        case .unknown: return "❓"
+        }
+    }
+}
+
+enum VolatilityLevel: String {
+    case low = "Low"
+    case medium = "Medium"
+    case high = "High"
+    case unknown = "Unknown"
+    
+    var color: String {
+        switch self {
+        case .low: return "Green"
+        case .medium: return "Yellow"
+        case .high: return "Red"
+        case .unknown: return "Gray"
+        }
+    }
+}
+
+// MARK: - Data Services (Classes for Complex Operations)
+
+/// Service for fetching data from IMF and World Bank APIs
+class EconomicDataService {
+    private let urlSession = URLSession.shared
+    private let cache = NSCache<NSString, NSData>()
+    
+    // API Endpoints
+    private let worldBankBaseURL = "https://api.worldbank.org/v2"
+    private let imfBaseURL = "https://www.imf.org/external/datamapper/api/v1"
+    
+    /// Fetch data for a specific indicator and countries
+    func fetchIndicatorData(
+        indicator: EconomicIndicator, 
+        countryCodes: [String],
+        startYear: Int = 2010,
+        endYear: Int = 2023
+    ) async throws -> [EconomicDataPoint] {
+        
+        print("🌐 Fetching \(indicator.displayName) for \(countryCodes.count) countries...")
+        
+        // In a real implementation, this would make HTTP requests
+        // For now, we'll simulate with sample data
+        return generateSampleData(indicator: indicator, countries: countryCodes, yearRange: startYear...endYear)
+    }
+    
+    /// Fetch multiple indicators for cross-analysis
+    func fetchMultipleIndicators(
+        indicators: [EconomicIndicator],
+        countryCodes: [String],
+        yearRange: ClosedRange<Int>
+    ) async throws -> [String: [EconomicDataPoint]] {
+        
+        var results: [String: [EconomicDataPoint]] = [:]
+        
+        for indicator in indicators {
+            let data = try await fetchIndicatorData(
+                indicator: indicator,
+                countryCodes: countryCodes,
+                startYear: yearRange.lowerBound,
+                endYear: yearRange.upperBound
+            )
+            results[indicator.rawValue] = data
+        }
+        
+        return results
+    }
+    
+    // Sample data generation for development
+    private func generateSampleData(
+        indicator: EconomicIndicator, 
+        countries: [String],
+        yearRange: ClosedRange<Int>
+    ) -> [EconomicDataPoint] {
+        
+        var dataPoints: [EconomicDataPoint] = []
+        
+        for country in countries {
+            for year in yearRange {
+                let baseValue = getBaseValue(for: indicator, country: country)
+                let variation = Double.random(in: -0.2...0.2)
+                let yearEffect = sin(Double(year - 2010) * 0.5) * 0.1
+                let value = baseValue * (1 + variation + yearEffect)
+                
+                let dataPoint = EconomicDataPoint(
+                    id: UUID(),
+                    countryCode: country,
+                    countryName: getCountryName(code: country),
+                    indicatorCode: indicator.rawValue,
+                    indicatorName: indicator.displayName,
+                    year: year,
+                    value: value > 0 ? value : nil,
+                    unit: indicator.unit,
+                    sourceDatabase: .worldBank,
+                    lastUpdated: Date()
+                )
+                
+                dataPoints.append(dataPoint)
+            }
+        }
+        
+        return dataPoints
+    }
+    
+    private func getBaseValue(for indicator: EconomicIndicator, country: String) -> Double {
+        // Realistic base values for different indicators and countries
+        switch indicator {
+        case .gdpGrowth:
+            return country == "US" ? 2.5 : country == "CN" ? 6.0 : 1.8
+        case .inflation:
+            return country == "US" ? 2.1 : country == "TR" ? 8.5 : 1.2
+        case .unemployment:
+            return country == "US" ? 5.2 : country == "ES" ? 12.8 : 7.1
+        case .gdpPerCapita:
+            return country == "US" ? 65000 : country == "CN" ? 12000 : 45000
+        default:
+            return Double.random(in: 1...100)
+        }
+    }
+    
+    private func getCountryName(code: String) -> String {
+        let countryMap = [
+            "US": "United States",
+            "CN": "China", 
+            "JP": "Japan",
+            "DE": "Germany",
+            "GB": "United Kingdom",
+            "FR": "France",
+            "IN": "India",
+            "IT": "Italy",
+            "BR": "Brazil",
+            "CA": "Canada"
+        ]
+        return countryMap[code] ?? code
+    }
+}
+
+/// Service for analyzing economic trends and generating insights
+class TrendAnalysisService {
+    
+    /// Identify countries showing concerning economic patterns
+    func identifyRiskyCountries(timeSeries: [EconomicTimeSeries]) -> [CountryRiskAssessment] {
+        var riskAssessments: [CountryRiskAssessment] = []
+        
+        // Group by country
+        let countryGroups = Dictionary(grouping: timeSeries) { $0.country.code }
+        
+        for (countryCode, series) in countryGroups {
+            guard let country = series.first?.country else { continue }
+            
+            let riskFactors = calculateRiskFactors(for: series)
+            let overallRisk = assessOverallRisk(riskFactors: riskFactors)
+            
+            let assessment = CountryRiskAssessment(
+                country: country,
+                overallRisk: overallRisk,
+                riskFactors: riskFactors,
+                recommendations: generateRecommendations(for: overallRisk, factors: riskFactors)
+            )
+            
+            riskAssessments.append(assessment)
+        }
+        
+        return riskAssessments.sorted { $0.overallRisk.rawValue > $1.overallRisk.rawValue }
+    }
+    
+    /// Compare countries across multiple indicators
+    func compareCountries(
+        countries: [String], 
+        indicators: [EconomicIndicator],
+        data: [EconomicDataPoint]
+    ) -> CountryComparison {
+        
+        let countryData = Dictionary(grouping: data) { $0.countryCode }
+        var rankings: [String: [IndicatorRanking]] = [:]
+        
+        for indicator in indicators {
+            let indicatorData = data.filter { $0.indicatorCode == indicator.rawValue }
+            let latestData = Dictionary(grouping: indicatorData) { $0.countryCode }
+                .compactMapValues { $0.max { $0.year < $1.year }?.value }
+            
+            let sortedCountries = latestData.sorted { $0.value > $1.value }
+            
+            for (index, (country, value)) in sortedCountries.enumerated() {
+                let ranking = IndicatorRanking(
+                    indicator: indicator,
+                    rank: index + 1,
+                    value: value,
+                    percentile: Double(index) / Double(sortedCountries.count) * 100
+                )
+                
+                rankings[country, default: []].append(ranking)
+            }
+        }
+        
+        return CountryComparison(
+            countries: countries,
+            indicators: indicators,
+            rankings: rankings
+        )
+    }
+    
+    private func calculateRiskFactors(for series: [EconomicTimeSeries]) -> [RiskFactor] {
+        var factors: [RiskFactor] = []
+        
+        for timeSeries in series {
+            switch timeSeries.indicator {
+            case .gdpGrowth:
+                if timeSeries.trend == .downward {
+                    factors.append(.decliningGrowth)
+                }
+            case .inflation:
+                if let latest = timeSeries.latestValue, latest > 5.0 {
+                    factors.append(.highInflation)
+                }
+            case .unemployment:
+                if let latest = timeSeries.latestValue, latest > 10.0 {
+                    factors.append(.highUnemployment)
+                }
+            case .governmentDebt:
+                if let latest = timeSeries.latestValue, latest > 100.0 {
+                    factors.append(.highDebt)
+                }
+            default:
+                break
+            }
+        }
+        
+        return factors
+    }
+    
+    private func assessOverallRisk(riskFactors: [RiskFactor]) -> RiskLevel {
+        if riskFactors.count >= 3 { return .high }
+        else if riskFactors.count == 2 { return .medium }
+        else if riskFactors.count == 1 { return .low }
+        else { return .minimal }
+    }
+    
+    private func generateRecommendations(for risk: RiskLevel, factors: [RiskFactor]) -> [String] {
+        var recommendations: [String] = []
+        
+        for factor in factors {
+            switch factor {
+            case .decliningGrowth:
+                recommendations.append("Monitor GDP growth trends closely")
+            case .highInflation:
+                recommendations.append("Watch for monetary policy changes")
+            case .highUnemployment:
+                recommendations.append("Consider labor market interventions")
+            case .highDebt:
+                recommendations.append("Assess fiscal sustainability measures")
+            }
+        }
+        
+        return recommendations
+    }
+}
+
+// MARK: - Analysis Models
+
+struct CountryRiskAssessment {
+    let country: Country
+    let overallRisk: RiskLevel
+    let riskFactors: [RiskFactor]
+    let recommendations: [String]
+}
+
+enum RiskLevel: Int, CaseIterable {
+    case minimal = 1
+    case low = 2
+    case medium = 3
+    case high = 4
+    
+    var description: String {
+        switch self {
+        case .minimal: return "✅ Minimal Risk"
+        case .low: return "🟡 Low Risk"
+        case .medium: return "🟠 Medium Risk"  
+        case .high: return "🔴 High Risk"
+        }
+    }
+}
+
+enum RiskFactor {
+    case decliningGrowth
+    case highInflation
+    case highUnemployment
+    case highDebt
+    
+    var description: String {
+        switch self {
+        case .decliningGrowth: return "GDP growth trending downward"
+        case .highInflation: return "Inflation above target levels"
+        case .highUnemployment: return "Unemployment significantly elevated"
+        case .highDebt: return "Government debt levels concerning"
+        }
+    }
+}
+
+struct CountryComparison {
+    let countries: [String]
+    let indicators: [EconomicIndicator]
+    let rankings: [String: [IndicatorRanking]]
+}
+
+struct IndicatorRanking {
+    let indicator: EconomicIndicator
+    let rank: Int
+    let value: Double
+    let percentile: Double
+}
+
+// MARK: - Chart Data Preparation
+
+/// Prepares economic data for Swift Charts visualization
+class ChartDataProcessor {
+    
+    /// Convert time series data to chart-ready format
+    func prepareTimeSeriesChart(
+        timeSeries: [EconomicTimeSeries]
+    ) -> TimeSeriesChartData {
+        
+        var chartSeries: [ChartSeries] = []
+        
+        for series in timeSeries {
+            let points = series.dataPoints
+                .filter { $0.isValid }
+                .sorted { $0.year < $1.year }
+                .map { ChartPoint(x: Double($0.year), y: $0.value!) }
+            
+            chartSeries.append(ChartSeries(
+                name: "\(series.country.name) - \(series.indicator.displayName)",
+                points: points,
+                color: assignColor(for: series.country.code)
+            ))
+        }
+        
+        return TimeSeriesChartData(
+            title: "Economic Trends Over Time",
+            series: chartSeries,
+            xAxisLabel: "Year",
+            yAxisLabel: timeSeries.first?.indicator.unit ?? "Value"
+        )
+    }
+    
+    /// Create comparison chart data
+    func prepareComparisonChart(
+        countries: [String],
+        indicator: EconomicIndicator,
+        latestValues: [String: Double]
+    ) -> BarChartData {
+        
+        let bars = countries.compactMap { country -> ChartBar? in
+            guard let value = latestValues[country] else { return nil }
+            return ChartBar(
+                label: country,
+                value: value,
+                color: assignColor(for: country)
+            )
+        }.sorted { $0.value > $1.value }
+        
+        return BarChartData(
+            title: "\(indicator.displayName) - Latest Values",
+            bars: bars,
+            yAxisLabel: indicator.unit
+        )
+    }
+    
+    private func assignColor(for countryCode: String) -> String {
+        let colors = ["blue", "red", "green", "orange", "purple", "brown", "pink", "gray"]
+        let hash = countryCode.hashValue
+        return colors[abs(hash) % colors.count]
+    }
+}
+
+// Chart data structures
+struct TimeSeriesChartData {
+    let title: String
+    let series: [ChartSeries]
+    let xAxisLabel: String
+    let yAxisLabel: String
+}
+
+struct ChartSeries {
+    let name: String
+    let points: [ChartPoint]
+    let color: String
+}
+
+struct ChartPoint {
+    let x: Double
+    let y: Double
+}
+
+struct BarChartData {
+    let title: String
+    let bars: [ChartBar]
+    let yAxisLabel: String
+}
+
+struct ChartBar {
+    let label: String
+    let value: Double
+    let color: String
+}
+
+// MARK: - Demo Usage
+
+print("🚀 DEMO: Economic Data Analysis System\n")
+
+// Sample countries
+let majorEconomies = ["US", "CN", "JP", "DE", "GB", "FR", "IN", "IT", "BR", "CA"]
+
+// Initialize services
+let dataService = EconomicDataService()
+let analysisService = TrendAnalysisService()
+let chartProcessor = ChartDataProcessor()
+
+// Simulate data fetching and analysis
+Task {
+    do {
+        print("📊 Fetching GDP Growth data...")
+        
+        let gdpData = try await dataService.fetchIndicatorData(
+            indicator: .gdpGrowth,
+            countryCodes: majorEconomies,
+            startYear: 2018,
+            endYear: 2023
+        )
+        
+        print("✅ Fetched \(gdpData.count) data points")
+        
+        // Create time series
+        let countryGroups = Dictionary(grouping: gdpData) { $0.countryCode }
+        var timeSeries: [EconomicTimeSeries] = []
+        
+        for (countryCode, dataPoints) in countryGroups {
+            let country = Country(
+                code: countryCode,
+                name: dataPoints.first?.countryName ?? countryCode,
+                region: "Unknown",
+                incomeGroup: .highIncome,
+                currency: "USD",
+                population: nil
+            )
+            
+            let series = EconomicTimeSeries(
+                country: country,
+                indicator: .gdpGrowth,
+                dataPoints: dataPoints,
+                dateRange: 2018...2023
+            )
+            
+            timeSeries.append(series)
+        }
+        
+        print("\n📈 Analysis Results:")
+        print("=" * 40)
+        
+        for series in timeSeries {
+            print("🏛️ \(series.country.name):")
+            print("   Trend: \(series.trend.rawValue)")
+            print("   Volatility: \(series.volatility.rawValue)")
+            if let latest = series.latestValue {
+                print("   Latest: \(latest.formatted(.number.precision(.fractionLength(2))))%")
+            }
+            print("   Average: \(series.averageValue.formatted(.number.precision(.fractionLength(2))))%")
+            print()
+        }
+        
+        // Risk assessment
+        let riskAssessments = analysisService.identifyRiskyCountries(timeSeries: timeSeries)
+        
+        print("⚠️ Risk Assessment Summary:")
+        print("=" * 40)
+        
+        for assessment in riskAssessments.prefix(5) {
+            print("🏛️ \(assessment.country.name): \(assessment.overallRisk.description)")
+            for factor in assessment.riskFactors {
+                print("   • \(factor.description)")
+            }
+            print()
+        }
+        
+        // Chart data preparation
+        let chartData = chartProcessor.prepareTimeSeriesChart(timeSeries: timeSeries)
+        
+        print("📊 Chart prepared: '\(chartData.title)'")
+        print("   Series count: \(chartData.series.count)")
+        print("   Total data points: \(chartData.series.reduce(0) { $0 + $1.points.count })")
+        
+    } catch {
+        print("❌ Error: \(error)")
+    }
+}
+
+// MARK: - Development Roadmap
+print("\n" + "=" * 60)
+print("🗺️ DEVELOPMENT ROADMAP FOR YOUR APP")
+print("=" * 60)
+
+print("""
+
+📱 PHASE 1: Foundation (Weeks 1-2)
+• Set up SwiftUI project with Swift Data
+• Implement basic data models (structs above)
+• Create mock data service
+• Build simple list views for countries/indicators
+
+📊 PHASE 2: Charts Integration (Weeks 3-4)  
+• Add Swift Charts framework
+• Implement line charts for time series
+• Add bar charts for country comparisons
+• Create interactive chart components
+
+🌐 PHASE 3: Real API Integration (Weeks 5-6)
+• Integrate World Bank API
+• Add IMF data sources  
+• Implement data caching with Swift Data
+• Handle network errors gracefully
+
+🧠 PHASE 4: Trend Analysis (Weeks 7-8)
+• Implement trend detection algorithms
+• Add risk assessment features
+• Create alert system for concerning trends
+• Build recommendation engine
+
+✨ PHASE 5: User Experience (Weeks 9-10)
+• Add search and filtering
+• Implement favorites/watchlists  
+• Create sharing capabilities
+• Polish UI/UX with animations
+
+🚀 PHASE 6: Advanced Features (Weeks 11-12)
+• Add predictive modeling
+• Implement cross-indicator correlation analysis
+• Create custom dashboard builder
+• Add export capabilities
+
+📈 API ENDPOINTS TO USE:
+
+World Bank API:
+• Base: https://api.worldbank.org/v2/
+• Countries: countries?format=json
+• Indicators: indicators?format=json
+• Data: country/{country}/indicator/{indicator}?format=json
+
+IMF API:
+• Base: https://www.imf.org/external/datamapper/api/v1/
+• Indicators: indicators
+• Data: {indicator}/{country}
+
+🎯 KEY SUCCESS METRICS:
+• Help users spot economic trends 3-6 months early
+• Provide clear, actionable insights
+• Make complex economic data accessible
+• Enable data-driven decision making
+
+💡 UNIQUE VALUE PROPOSITION:
+"Turn economic complexity into clarity - spot the trends 
+others miss before it's too late!"
+""")
+
+// Extension for string repetition
+extension String {
+    static func * (left: String, right: Int) -> String {
+        return String(repeating: left, count: right)
+    }
+}
+
+print("\n🎯 Ready to build the future of economic data visualization! 📊🚀")

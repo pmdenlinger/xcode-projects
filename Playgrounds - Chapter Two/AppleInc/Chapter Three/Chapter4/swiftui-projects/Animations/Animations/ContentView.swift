@@ -13,21 +13,14 @@ struct ContentView: View {
     
     var body: some View {
         Button("Tap Me") {
-            withAnimation (
-                .spring(duration: 1, bounce: 0.5)) {
-                    animationAmount += 360
-                }
+//            Do nothing
         }
-        .padding(50)
-        .background(.red)
+        .background(.blue)
+        .frame(width: 200, height: 200)
         .foregroundStyle(.white)
-        .clipShape(Circle())
-        .rotation3DEffect(
-            .degrees(animationAmount),
-            axis: (x: 0, y: 1, z: 0))
-        
     }
 }
+
     
     
     

@@ -1,0 +1,367 @@
+// MARK: - Data Organization Practice Exercises
+// Building from simple to complex data structures
+
+import Foundation
+
+print("=== DATA ORGANIZATION PRACTICE ===")
+print("Let's build your syntax muscle memory! 💪\n")
+
+// MARK: - LEVEL 1: Basic Data Containers
+print("🟢 LEVEL 1: Basic Data Containers")
+print("=" * 40)
+
+// TODO: Complete these exercises by filling in the blanks
+
+print("\n📝 Exercise 1.1: Create a simple struct for a Book")
+// Your task: Create a struct with title, author, pages, and isRead properties
+// struct Book {
+//     let title: 
+//     let author: 
+//     let pages: 
+//     var isRead: 
+// }
+
+print("\n📝 Exercise 1.2: Create an array of your favorite colors")
+// Your task: Create an array called favoriteColors with 3-5 color names
+// let favoriteColors: [String] = 
+
+print("\n📝 Exercise 1.3: Create a dictionary mapping planet names to distances")
+// Your task: Create a dictionary with 3 planets and their distances from Sun
+// let planetDistances: [String: Double] = 
+
+print("\n📝 Exercise 1.4: Create an enum for days of the week")
+// Your task: Create an enum called Weekday with all 7 days
+// enum Weekday {
+//     case 
+// }
+
+// MARK: - LEVEL 2: Computed Properties and Methods
+print("\n\n🟡 LEVEL 2: Computed Properties and Methods")
+print("=" * 40)
+
+print("\n📝 Exercise 2.1: Add computed properties to your Book struct")
+// Your task: Add a computed property 'description' that returns a formatted string
+// Also add a computed property 'category' based on page count:
+// - Under 200 pages: "Short"
+// - 200-500 pages: "Medium" 
+// - Over 500 pages: "Long"
+
+print("\n📝 Exercise 2.2: Create a Temperature struct with conversions")
+// Your task: Create a struct that stores Celsius and can convert to Fahrenheit and Kelvin
+// struct Temperature {
+//     let celsius: Double
+//     
+//     var fahrenheit: Double {
+//         // Formula: (C × 9/5) + 32
+//     }
+//     
+//     var kelvin: Double {
+//         // Formula: C + 273.15
+//     }
+// }
+
+// MARK: - LEVEL 3: Complex Data Relationships
+print("\n\n🟠 LEVEL 3: Complex Data Relationships")
+print("=" * 40)
+
+print("\n📝 Exercise 3.1: Create a Library system")
+// Your task: Create structs for Library and Member, with relationships
+// - Library should have a name and array of books
+// - Member should have a name and array of borrowed book titles
+// - Add methods to borrow and return books
+
+print("\n📝 Exercise 3.2: Create a simple social media data model")
+// Your task: Create structs for User and Post
+// - User: username, email, posts array
+// - Post: content, timestamp, author (username)
+// - Add method to User for creating new posts
+
+// MARK: - LEVEL 4: Real-World Practice
+print("\n\n🔴 LEVEL 4: Real-World Practice")
+print("=" * 40)
+
+print("\n📝 Exercise 4.1: Build a simple contact manager")
+// Your task: Create a contact management system
+// - Contact struct with name, phone, email
+// - ContactManager class to store and search contacts
+// - Methods: add contact, find by name, list all
+
+print("\n📝 Exercise 4.2: Create a simple banking system")
+// Your task: Model a basic bank account system
+// - Account struct with account number, balance, owner name
+// - Transaction enum (deposit, withdrawal)
+// - BankManager class with methods to create accounts and process transactions
+
+// MARK: - PRACTICE SOLUTIONS (Don't peek until you try!)
+print("\n\n" + "=" * 60)
+print("🙈 SOLUTIONS BELOW - TRY FIRST!")
+print("=" * 60)
+
+print("\n💡 SOLUTION 1.1: Book Struct")
+struct Book {
+    let title: String
+    let author: String
+    let pages: Int
+    var isRead: Bool
+    
+    // Computed property for description
+    var description: String {
+        return "\(title) by \(author) (\(pages) pages)" + (isRead ? " ✓ Read" : " ◯ Unread")
+    }
+    
+    // Computed property for category
+    var category: String {
+        switch pages {
+        case ..<200:
+            return "Short"
+        case 200...500:
+            return "Medium"
+        default:
+            return "Long"
+        }
+    }
+}
+
+// Test the Book struct
+let book1 = Book(title: "Swift Programming", author: "Apple", pages: 350, isRead: true)
+print("Book: \(book1.description)")
+print("Category: \(book1.category)")
+
+print("\n💡 SOLUTION 1.2: Favorite Colors")
+let favoriteColors: [String] = ["Blue", "Green", "Purple", "Orange"]
+print("My favorite colors: \(favoriteColors.joined(separator: ", "))")
+
+print("\n💡 SOLUTION 1.3: Planet Distances")
+let planetDistances: [String: Double] = [
+    "Mercury": 57.9,
+    "Venus": 108.2,
+    "Earth": 149.6,
+    "Mars": 227.9
+]
+print("Planet distances from Sun (million km):")
+for (planet, distance) in planetDistances.sorted(by: { $0.value < $1.value }) {
+    print("  \(planet): \(distance)")
+}
+
+print("\n💡 SOLUTION 1.4: Weekday Enum")
+enum Weekday: String, CaseIterable {
+    case monday = "Monday"
+    case tuesday = "Tuesday"
+    case wednesday = "Wednesday"
+    case thursday = "Thursday"
+    case friday = "Friday"
+    case saturday = "Saturday"
+    case sunday = "Sunday"
+    
+    var isWeekend: Bool {
+        return self == .saturday || self == .sunday
+    }
+    
+    var emoji: String {
+        switch self {
+        case .monday: return "😴"
+        case .tuesday: return "💪"
+        case .wednesday: return "🐪"
+        case .thursday: return "🎯"
+        case .friday: return "🎉"
+        case .saturday: return "🏖️"
+        case .sunday: return "😌"
+        }
+    }
+}
+
+// Test the Weekday enum
+let today = Weekday.wednesday
+print("Today is \(today.rawValue) \(today.emoji)")
+print("Is weekend? \(today.isWeekend)")
+
+print("\n💡 SOLUTION 2.2: Temperature Struct")
+struct Temperature {
+    let celsius: Double
+    
+    var fahrenheit: Double {
+        return (celsius * 9/5) + 32
+    }
+    
+    var kelvin: Double {
+        return celsius + 273.15
+    }
+    
+    var description: String {
+        return String(format: "%.1f°C = %.1f°F = %.1fK", celsius, fahrenheit, kelvin)
+    }
+}
+
+// Test the Temperature struct
+let roomTemp = Temperature(celsius: 22.0)
+print("Room temperature: \(roomTemp.description)")
+
+let boiling = Temperature(celsius: 100.0)
+print("Boiling point: \(boiling.description)")
+
+print("\n💡 SOLUTION 3.1: Library System")
+struct Library {
+    let name: String
+    private var books: [Book]
+    
+    init(name: String, books: [Book] = []) {
+        self.name = name
+        self.books = books
+    }
+    
+    mutating func addBook(_ book: Book) {
+        books.append(book)
+        print("📚 Added '\(book.title)' to \(name)")
+    }
+    
+    func findBooks(by author: String) -> [Book] {
+        return books.filter { $0.author.lowercased().contains(author.lowercased()) }
+    }
+    
+    func bookCount: Int {
+        return books.count
+    }
+    
+    var availableBooks: [Book] {
+        return books.filter { !$0.isRead }
+    }
+}
+
+struct Member {
+    let name: String
+    private var borrowedBooks: [String] = []
+    
+    init(name: String) {
+        self.name = name
+    }
+    
+    mutating func borrowBook(_ title: String) {
+        borrowedBooks.append(title)
+        print("📖 \(name) borrowed '\(title)'")
+    }
+    
+    mutating func returnBook(_ title: String) {
+        if let index = borrowedBooks.firstIndex(of: title) {
+            borrowedBooks.remove(at: index)
+            print("📗 \(name) returned '\(title)'")
+        }
+    }
+    
+    var currentBooks: [String] {
+        return borrowedBooks
+    }
+}
+
+// Test the Library system
+var library = Library(name: "City Library")
+library.addBook(Book(title: "1984", author: "George Orwell", pages: 328, isRead: false))
+library.addBook(Book(title: "Animal Farm", author: "George Orwell", pages: 112, isRead: false))
+
+var member = Member(name: "Alice")
+member.borrowBook("1984")
+print("Alice's books: \(member.currentBooks)")
+
+print("\n💡 SOLUTION 4.1: Contact Manager")
+struct Contact {
+    let name: String
+    let phone: String
+    let email: String
+    
+    var description: String {
+        return "\(name) - 📞 \(phone) - 📧 \(email)"
+    }
+}
+
+class ContactManager {
+    private var contacts: [Contact] = []
+    
+    func addContact(_ contact: Contact) {
+        contacts.append(contact)
+        print("✅ Added contact: \(contact.name)")
+    }
+    
+    func findContact(by name: String) -> Contact? {
+        return contacts.first { $0.name.lowercased().contains(name.lowercased()) }
+    }
+    
+    func listAllContacts() {
+        print("\n📇 All Contacts:")
+        if contacts.isEmpty {
+            print("  No contacts found")
+        } else {
+            for contact in contacts.sorted(by: { $0.name < $1.name }) {
+                print("  \(contact.description)")
+            }
+        }
+    }
+    
+    var contactCount: Int {
+        return contacts.count
+    }
+}
+
+// Test the Contact Manager
+let manager = ContactManager()
+manager.addContact(Contact(name: "John Doe", phone: "555-0123", email: "john@example.com"))
+manager.addContact(Contact(name: "Jane Smith", phone: "555-0456", email: "jane@example.com"))
+
+manager.listAllContacts()
+
+if let contact = manager.findContact(by: "john") {
+    print("\n🔍 Found: \(contact.description)")
+}
+
+print("\n📊 Total contacts: \(manager.contactCount)")
+
+// MARK: - Practice Guidelines
+print("\n\n" + "=" * 60)
+print("🎯 PRACTICE GUIDELINES")
+print("=" * 60)
+
+print("""
+
+📝 HOW TO USE THESE EXERCISES:
+
+1️⃣ START SIMPLE:
+   • Copy this playground
+   • Try each exercise WITHOUT looking at solutions
+   • Focus on syntax, not perfection
+
+2️⃣ BUILD GRADUALLY:
+   • Master Level 1 before moving to Level 2
+   • Type everything by hand (no copy/paste)
+   • Experiment with variations
+
+3️⃣ PRACTICE DAILY:
+   • 15-20 minutes per day
+   • Create your own similar exercises
+   • Modify existing solutions
+
+4️⃣ COMMON PATTERNS TO MEMORIZE:
+   • struct Name { let property: Type }
+   • var computed: Type { return calculation }
+   • mutating func for changing struct properties
+   • private for encapsulation
+   • init() for custom initialization
+
+5️⃣ MUSCLE MEMORY BUILDERS:
+   • Type struct definitions from memory
+   • Practice enum with associated values
+   • Write computed properties without looking
+   • Create arrays and dictionaries by heart
+
+💡 NEXT STEPS:
+   • Create similar exercises for YOUR interests
+   • Model your hobbies, work, or daily life
+   • Share your practice with other learners
+   • Build small apps using these patterns
+""")
+
+print("\nReady to practice? Start with Level 1! 🚀")
+
+// Helper extension for string repetition
+extension String {
+    static func * (left: String, right: Int) -> String {
+        return String(repeating: left, count: right)
+    }
+}
