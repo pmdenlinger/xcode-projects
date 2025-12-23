@@ -9,22 +9,24 @@ import SwiftUI
 
 struct ContentView: View {
     
-    
+    @State private var isShowingRed = false
     
     var body: some View {
         VStack {
             Button("Tap Me") {
-                    // Do nothing
+                withAnimation {
+                    isShowingRed.toggle()
+                }
             }
             
-            Rectangle()
-                .fill(.red)
-                .frame(width: 200, height: 200)
+            if isShowingRed {
+                Rectangle()
+                    .fill(.red)
+                    .frame(width: 200, height: 200)
+            }
         }
-                
     }
 }
-
     
     
     
@@ -32,4 +34,5 @@ struct ContentView: View {
     #Preview {
         ContentView()
     }
+
 
