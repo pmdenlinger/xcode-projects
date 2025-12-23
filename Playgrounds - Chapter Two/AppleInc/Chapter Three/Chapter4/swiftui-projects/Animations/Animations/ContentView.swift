@@ -17,6 +17,7 @@ struct ContentView: View {
             startPoint: .topLeading, endPoint: .bottomTrailing)
         .frame(width: 300, height: 200)
         .clipShape(.rect(cornerRadius: 10))
+        .offset(dragAmount)
         
         
     }
