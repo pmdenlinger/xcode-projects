@@ -1,4 +1,3 @@
-//
 //  ContentView.swift
 //  Animations
 //
@@ -8,7 +7,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @State private var isShowingRed = false
     
     var body: some View {
@@ -24,18 +22,35 @@ struct ContentView: View {
                     .fill(.red)
                     .frame(width: 200, height: 200)
                     .transition(.asymmetric(
-                        insertion: .scale, removal: .opacity))
+                        insertion: .pivot, removal: .opacity))
                         
             }
         }
     }
 }
+
+struct CornerRotateModifier: ViewModifier {
+    let amount: Double
+    let anchor: UnitPoint
     
-    
-    
-    
-    #Preview {
-        ContentView()
+    func body(content: Content) -> some View {
+        content
+            .rotationEffect(.degrees(amount), anchor: anchor)
+            .clipped()
     }
+}
+
+extension AnyTransition {
+    static var pivot: AnyTransition {
+        .modifier(
+            active: CornerRotateModifier(amount: -90, anchor: .topLeading),
+            identity: CornerRotateModifier(amount: 0, anchor: .topLeading)
+        )
+    }
+}
+
+#Preview {
+    ContentView()
+}
 
 
