@@ -26,6 +26,11 @@ struct ContentView: View {
                         
             }
         }
+        .onTapGesture {
+            withAnimation {
+                isShowingRed.toggle()
+            }
+        }
     }
 }
 
