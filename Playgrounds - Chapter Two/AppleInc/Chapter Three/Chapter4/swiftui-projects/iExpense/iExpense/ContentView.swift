@@ -32,3 +32,10 @@ struct ContentView: View {
 #Preview {
     ContentView()
 }
+
+struct SecondView: View {
+    var body: some View {
+        Text("Second View")
+    }
+}
+    
