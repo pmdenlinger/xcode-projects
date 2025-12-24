@@ -16,11 +16,11 @@ class User {
 
 struct ContentView: View {
     
-    @State private var user = User()
+    @State private var showingSheet = false
     
     var body: some View {
         Button("Show Sheet"){
-            // show the sheet
+            showingSheet.toggle()
         }
     }
 }
