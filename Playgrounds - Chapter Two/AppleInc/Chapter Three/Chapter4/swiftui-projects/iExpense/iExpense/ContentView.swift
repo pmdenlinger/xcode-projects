@@ -22,6 +22,9 @@ struct ContentView: View {
         Button("Show Sheet"){
             showingSheet.toggle()
         }
+        .sheet(isPresented: $showingSheet) {
+            SecondView()
+        }
     }
 }
 
