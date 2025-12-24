@@ -19,13 +19,9 @@ struct ContentView: View {
     @State private var user = User()
     
     var body: some View {
-        VStack {
-            Text("Your name is \(user.firstName) \(user.lastName)")
-            TextField("First Name", text: $user.firstName)
-            TextField("Last Name", text: $user.lastName)
-
+        Button("Show Sheet"){
+            // show the sheet
         }
-        .padding()
     }
 }
 
