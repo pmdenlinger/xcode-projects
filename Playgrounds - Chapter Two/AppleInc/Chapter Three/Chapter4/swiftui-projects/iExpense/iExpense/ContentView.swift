@@ -33,8 +33,11 @@ struct ContentView: View {
 }
 
 struct SecondView: View {
+    @Environment(\.dismiss) var dismiss
     var body: some View {
-        Text("Second View")
+        Button("Dismiss"){
+            dismiss()
+        }
     }
 }
     
