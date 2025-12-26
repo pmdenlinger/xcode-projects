@@ -21,17 +21,16 @@ class Expenses {
                 UserDefaults.standard.set(encoded, forKey: "Items")
             }
         }
-        items = []
     }
     
     init() {
         if let savedItems = UserDefaults.standard.data(forKey: "Items") {
             if let decoded = try? JSONDecoder().decode([ExpenseItem].self, from: savedItems) {
-                items = decodedItems
+                items = decoded
                 return
-            
+            }
+        }
     }
-}
     
     func removeItems(at offsets: IndexSet) {
         items.remove(atOffsets: offsets)
@@ -48,8 +47,19 @@ struct ContentView: View {
         NavigationStack {
             List {
                 ForEach(expenses.items) { item in
-                    Text(item.name)
+                HStack {
+                    VStack (alignment: .leading) {
+                        Text(item.name)
+                            .font(.headline)
+                        Text(item.type)
+                    }
+                        
+                     Spacer()
+                        Text(item.amount, format: .currency(code: "USD"))
+                    }
+                    
                 }
+                
                 .onDelete(perform: expenses.removeItems)
             }
             .navigationTitle("iExpense")
