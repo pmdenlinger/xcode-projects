@@ -15,7 +15,6 @@ struct ContentView: View {
     
     var body: some View {
         Button("Tap count: \(tapCount)") {
-            UserDefaults.standard.set(tapCount + 1, forKey: "Tap")
             tapCount += 1
         }
     }
