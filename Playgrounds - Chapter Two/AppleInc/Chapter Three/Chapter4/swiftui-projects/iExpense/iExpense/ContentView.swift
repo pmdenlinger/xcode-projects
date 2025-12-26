@@ -15,6 +15,10 @@ struct ExpenseItem {
 @Observable
 class Expenses {
     var items = [ExpenseItem]()
+    
+    func removeItems(at offsets: IndexSet) {
+        items.remove(atOffsets: offsets)
+    }
 }
 
 struct ContentView: View {
@@ -27,6 +31,7 @@ struct ContentView: View {
                 ForEach(expenses.items, id: \.name) { item in
                     Text(item.name)
                 }
+                .onDelete(perform: expenses.removeItems)
             }
             .navigationTitle("iExpense")
             .toolbar {
