@@ -10,11 +10,12 @@ import Observation
 
 
 struct ContentView: View {
-    @State  private var tapCount = 0
+    @AppStorage("Tap") private var tapCount = 0
     
     
     var body: some View {
         Button("Tap count: \(tapCount)") {
+            UserDefaults.standard.set(tapCount + 1, forKey: "Tap")
             tapCount += 1
         }
     }
