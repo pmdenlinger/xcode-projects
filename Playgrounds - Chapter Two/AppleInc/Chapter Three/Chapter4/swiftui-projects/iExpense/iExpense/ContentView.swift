@@ -40,18 +40,20 @@ struct ContentView: View {
             .toolbar {
                 Button ("Add Expense", systemImage: "plus") {
                     let expense = ExpenseItem(name: "Test", type: "Personal", amount: 5.00)
+                    showingAddExpense = true
                     expenses.items.append(expense)
-                         {
-                            
-                }
                     
+                    
+                }
             }
-        }
             
-        
+            
+        }
+        .sheet(isPresented: $showingAddExpense) {
+            AddView(expenses: expenses)
+        }
+            // show an AddView here
     }
-        .sheet(isPresented: $showingAddExpense)
-        // show an AddView here
 }
 
 #Preview {
