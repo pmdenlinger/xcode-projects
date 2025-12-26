@@ -19,7 +19,7 @@ struct ContentView: View {
     ContentView()
 }
 
-Struct User {
+Struct User: Codable {
     let firstName: String
     let lastName: String
 }
