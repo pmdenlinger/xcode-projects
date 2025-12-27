@@ -24,8 +24,8 @@ struct ContentView: View {
     
     var body: some View {
         
-        ScrollView {
-            LazyVStack {
+        ScrollView(.horizontal) {
+            LazyVStack(spacing: 10) {
                 ForEach(0..<100) { index in
                     CustomText("Item \(index)")
                         .font(.title)
