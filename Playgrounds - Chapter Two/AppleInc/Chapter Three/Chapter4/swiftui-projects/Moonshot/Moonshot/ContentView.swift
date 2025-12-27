@@ -7,26 +7,34 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CustomText: View {
+    let text: String
+    
+    init(_ text: String) {
+        print("Creating a new CustomText")
+        self.text = text
+    }
+    
     var body: some View {
-        ScrollView {
-            VStack(spacing: 10) {
-                Image("apollo11")
-                    .resizable()
-                    .scaledToFit()
-                    .containerRelativeFrame(.horizontal) { size, axis in
-                        size * 0.8
-                    }
+        Text(text)
+        }
+}
+
+struct ContentView: View {
+    
+    var body: some View {
+    
+    ScrollView {
                 
                 ForEach(0..<100) { index in
-                    Text("Item \(index)")
+                    CustomText("Item \(index)")
                         .font(.title)
                 }
             }
             .frame(maxWidth: .infinity)
         }
     }
-}
+
 
 #Preview {
     ContentView()
