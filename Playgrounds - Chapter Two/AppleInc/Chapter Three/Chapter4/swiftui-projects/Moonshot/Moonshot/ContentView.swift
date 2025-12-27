@@ -7,33 +7,16 @@
 
 import SwiftUI
 
-struct CustomText: View {
-    let text: String
-    
-    init(_ text: String) {
-        print("Creating a new CustomText")
-        self.text = text
-    }
-    
-    var body: some View {
-        Text(text)
-        }
-}
 
 struct ContentView: View {
     
     var body: some View {
         
-        ScrollView(.horizontal) {
-            LazyVStack(spacing: 10) {
-                ForEach(0..<100) { index in
-                    CustomText("Item \(index)")
-                        .font(.title)
-                    
-                }
-            }
-            .frame(maxWidth: .infinity)
+        NavigationStack {
+          Text("Tap Me")
+                .navigationTitle("SwiftUI")
         }
+        
     }
 }
 
