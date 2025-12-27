@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         Image("apollo11")
             .resizable()
+            .scaledToFit()
             .frame(width:300, height:300)
             
             
