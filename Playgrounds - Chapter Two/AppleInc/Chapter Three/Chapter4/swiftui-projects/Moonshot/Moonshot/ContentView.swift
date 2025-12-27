@@ -23,17 +23,19 @@ struct CustomText: View {
 struct ContentView: View {
     
     var body: some View {
-    
-    ScrollView {
-                
+        
+        ScrollView {
+            LazyVStack {
                 ForEach(0..<100) { index in
                     CustomText("Item \(index)")
                         .font(.title)
+                    
                 }
             }
             .frame(maxWidth: .infinity)
         }
     }
+}
 
 
 #Preview {
