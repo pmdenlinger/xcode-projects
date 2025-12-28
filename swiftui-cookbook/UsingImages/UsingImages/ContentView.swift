@@ -13,6 +13,14 @@ struct ContentView: View {
             Image(.dogs1)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+            
+            Image(.dogAndNature)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 300, height: 200)
+                .clipShape(Circle())
+                .overlay (Circle().stroke(.blue, lineWidth: 6))
+                .shadow(radius: 10)
         }
         
     }
