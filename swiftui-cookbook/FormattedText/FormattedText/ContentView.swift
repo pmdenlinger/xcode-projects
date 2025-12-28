@@ -25,6 +25,20 @@ struct ContentView: View {
                 .font(.largeTitle)
                 .underline()
             
+            Text("Changing text color and making it bold")
+                .foregroundStyle(.blue)
+                .bold()
+            Text("Use kerning to change space between characters in the text")
+                .kerning(7)
+            Text("Changing baseline offest")
+                .baselineOffset(100)
+            Text("Strikethrough")
+                .strikethrough()
+            Text("This is a multiline text implemented in SwiftUI. The trailing modifier was added to the text. This text also implements multiple modifiers.")
+                .background(.yellow)
+                .multilineTextAlignment(.trailing)
+                .lineSpacing(10)
+            
             
                 
         }
