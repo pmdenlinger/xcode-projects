@@ -19,6 +19,12 @@ struct ContentView: View {
             SecureField("Enter a password", text: $password)
                 .padding()
             
+            TextField("Enter some text", text: $someText)
+                .padding()
+            Text(someText)
+                .font(.largeTitle)
+                .underline()
+            
             
                 
         }
