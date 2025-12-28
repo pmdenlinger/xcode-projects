@@ -21,6 +21,12 @@ struct ContentView: View {
                 .clipShape(Circle())
                 .overlay (Circle().stroke(.blue, lineWidth: 6))
                 .shadow(radius: 10)
+                        
+            Image(uiImage: UIImage(resource: .dog2))
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 200, height: 200)
+                
         }
         
     }
