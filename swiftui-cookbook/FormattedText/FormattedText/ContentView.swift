@@ -15,6 +15,11 @@ struct ContentView: View {
         VStack {
             Text("Hello, World!")
                 .fontWeight(.medium)
+            
+            SecureField("Enter a password", text: $password)
+                .padding()
+            
+            
                 
         }
        
