@@ -16,13 +16,17 @@ struct ContentView: View {
     @State private var gameTime = Date()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        Form {
+            Section {
+                Picker("Transit Modes", selection: $choice) {
+                    ForEach(0 ..< transitModes.count, id: \.self) {
+                        Text("\("transitModes[index])")
+                    }
+                }
+                .pickerStyle(.segmented)
+                Text("Current choice: \(transitModes[choice])")
+            }
         }
-        .padding()
     }
 }
 
