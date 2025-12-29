@@ -47,7 +47,27 @@ struct ContentView: View {
                 Text("current editor text: \n\(someText)")
                 
             }
+            
+            Section(header: Text("Menu")) {
+                Menu("Actions") {
+                    Button("SetTextEditor text to 'magic'") {
+                        someText = "magic"
+                    }
+                    Button("Turn first picker green") {
+                        color = .green
+                    }
+                    Menu("Actions") {
+                        Button("Set TextEditor text to 'real magic'") {
+                            someText = "real magic"
+                        }
+                        Button("Turn first picker gray") {
+                            color = .gray
+                        }
+                    }
+                }
+            }
         }
+        
     }
 }
 
