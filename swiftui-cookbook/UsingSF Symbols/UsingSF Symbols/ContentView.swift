@@ -20,6 +20,19 @@ struct ContentView: View {
             .symbolVariant(.fill.circle)
             .foregroundStyle(.yellow, .blue)
             .font(.title)
+            
+            HStack {
+                Image(systemName: "b.circle.fill")
+                Image(systemName: "o.circle.fill")
+                    .foregroundStyle(.red)
+                Image(systemName: "o.circle.fill")
+                    .imageScale(.large)
+                Image(systemName: "k.circle.fill")
+                    .accessibility(identifier: "Letter K")
+            }
+            .foregroundStyle(.blue)
+            .font(.title)
+            .padding()
         }
     }
 }
