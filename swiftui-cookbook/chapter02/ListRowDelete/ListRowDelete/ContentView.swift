@@ -12,14 +12,22 @@ struct ContentView: View {
     @State private var countries = ["USA", "Canada", "Mexico", "England", "Cameroon", "South Africa", "Japan", "South Korea"]
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(countries, id: \.self) {
+                    country in
+                    Text(country)
+                }
+                .onDelete(perform: deleteItem)
+            }
+            .navigationTitle("Countries")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .padding()
     }
+    private func deleteItem(at indexSet: IndexSet) {
+        countries.remove(atOffsets: indexSet)
+    }
+    
 }
 
 #Preview {
