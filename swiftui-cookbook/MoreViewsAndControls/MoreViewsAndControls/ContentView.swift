@@ -16,6 +16,19 @@ struct ContentView: View {
     
     var body: some View {
         
+        List {
+            Section(header: Text("Progress Views")) {
+                ProgressView("Indeterminate progress view")
+                ProgressView("Downloading", value: progress, total: 2)
+                Button("More") {
+                    if progress < 2 {
+                        progress += 0.5
+                    }
+                    
+                }
+            }
+            
+        }
     }
 }
 
