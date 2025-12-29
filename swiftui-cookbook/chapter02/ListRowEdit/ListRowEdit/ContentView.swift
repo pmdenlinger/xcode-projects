@@ -21,13 +21,17 @@ struct ContentView: View {
             }
             .navigationTitle("Countries")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar { EditButton() }
-        
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) { EditButton()
+                }
+            }
         }
+    
     }
     private func deleteItem(atIndexSet:  IndexSet) {
         countries.remove(atOffsets: atIndexSet)
-    }
+}
+
 }
 
 #Preview {
