@@ -41,9 +41,6 @@ struct ContentView: View {
             .symbolVariant(.fill)
             .symbolRenderingMode(.multicolor)
             .font(.largeTitle)
-            
-                    .
-            
         }
     }
 }
