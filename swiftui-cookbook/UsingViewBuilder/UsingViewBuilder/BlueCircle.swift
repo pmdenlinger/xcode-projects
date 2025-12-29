@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BlueCircle<Content: View> {
+struct BlueCircle<Content: View>: View {
     let content: Content
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
