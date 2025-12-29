@@ -15,12 +15,17 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            ScrollView {
+                ForEach(letters, id: \.self) { letter in
+                    Image(systemName: letter)
+                        .font(.largeTitle)
+                        .foregroundStyle(.yellow)
+                        .frame(width: 50, height: 50)
+                        .background(.blue)
+                        .symbolVariant(.circle.fill)
+                }
+            }
         }
-        .padding()
     }
 }
 
