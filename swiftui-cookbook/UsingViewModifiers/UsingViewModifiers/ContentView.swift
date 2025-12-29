@@ -7,10 +7,13 @@
 
 import SwiftUI
 
+
+
 struct ContentView: View {
     var body: some View {
         Text("Perfect")
-            .modifier(BackgroundStyle(bgColor: .blue))}
+            .backgroundStyle(color: Color.red)
+    }
 }
 
 struct BackgroundStyle: ViewModifier {
@@ -23,6 +26,12 @@ struct BackgroundStyle: ViewModifier {
             .background(bgColor)
             .cornerRadius(20)
         }
+}
+
+extension View {
+    func backgroundStyle(color: Color) -> some View {
+        self.modifier(BackgroundStyle(bgColor: color))
+    }
 }
 
 #Preview {
