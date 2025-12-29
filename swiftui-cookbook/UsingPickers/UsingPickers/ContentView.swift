@@ -40,6 +40,10 @@ struct ContentView: View {
                 Slider(value: $sliderVal, in: 0...10, step: 0.001)
                 Text("Slider current value \(sliderVal, specifier: "%.1f")")
             }
+            Section {
+                Stepper("Stepper", value: $stepVal, in: 0...5)
+                Text("Stepper current value: \(stepVal)")
+            }
 
         }
     }
