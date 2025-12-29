@@ -28,6 +28,15 @@ struct ContentView: View {
                 }
             }
             
+            Section(header: Text("Color Picker")) {
+                ColorPicker(selection: $color) {
+                    Text("Pick my background")
+                        .background(color)
+                        .padding()
+                }
+                ColorPicker("Picker", selection: $secondColor)
+                
+            }
         }
     }
 }
