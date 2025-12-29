@@ -41,7 +41,12 @@ struct ContentView: View {
             Section(header: Text("Link")) {
                 Link("Packt Publishing", destination: URL(string: "https://www.packtpub.com")!)
             }
+            
+            Section(header: Text("Text Editor")) {
+                TextEditor(text: $someText)
+                Text("current editor text: \n\(someText)")
                 
+            }
         }
     }
 }
