@@ -23,6 +23,26 @@ struct ContentView: View {
             .navigationTitle("Continents and Countries")
             .navigationBarTitleDisplayMode(.inline)
         }
+        List {
+            Section(header: Text("Africa")) {
+                Text("Nigeria")
+                Text("Ghana")
+                Text("Kenya")
+                Text("Senegal")
+            }
+            .listStyle(.grouped)
+        }
+        List {
+            Section(header: Text("Europe")) {
+                Text("Spain")
+                Text("France")
+                Text("Sweden")
+                Text("Finland")
+                Text("UK")
+            }
+            .listStyle(.grouped)
+        }
+        
     }
 }
 
