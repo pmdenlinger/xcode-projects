@@ -25,6 +25,7 @@ struct ContentView: View {
                         .symbolVariant(.circle.fill)
                 }
             }
+            .frame(width: 50, height: 200)
         }
     }
 }
