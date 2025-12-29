@@ -44,6 +44,12 @@ struct ContentView: View {
                 Stepper("Stepper", value: $stepVal, in: 0...5)
                 Text("Stepper current value: \(stepVal)")
             }
+            Section {
+                DatePicker("Please select a date", selection: $gameTime)
+            }
+            Section {
+                DatePicker("Please select a date", selection: $gameTime, in: Date...)
+            }
 
         }
     }
