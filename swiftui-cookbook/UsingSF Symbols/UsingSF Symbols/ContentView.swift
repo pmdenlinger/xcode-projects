@@ -33,6 +33,17 @@ struct ContentView: View {
             .foregroundStyle(.blue)
             .font(.title)
             .padding()
+            
+            HStack {
+                Image(systemName: "allergens")
+                Image(systemName: "ladybug")
+            }
+            .symbolVariant(.fill)
+            .symbolRenderingMode(.multicolor)
+            .font(.largeTitle)
+            
+                    .
+            
         }
     }
 }
