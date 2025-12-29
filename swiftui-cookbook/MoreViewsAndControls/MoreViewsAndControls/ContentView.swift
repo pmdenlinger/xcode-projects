@@ -37,6 +37,11 @@ struct ContentView: View {
                 ColorPicker("Picker", selection: $secondColor)
                 
             }
+            
+            Section(header: Text("Link")) {
+                Link("Packt Publishing", destination: URL(string: "https://www.packtpub.com")!)
+            }
+                
         }
     }
 }
