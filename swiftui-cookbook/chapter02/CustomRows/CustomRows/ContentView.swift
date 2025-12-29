@@ -22,5 +22,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(weatherData: weatherInfo.weatherData)
+    ContentView(weatherData: WeatherInfo.weatherData)
 }
