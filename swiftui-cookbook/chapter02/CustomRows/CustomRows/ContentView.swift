@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var weatherData: [WeatherInfo]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List {
+            ForEach(weatherData) { weather in
+                WeatherRow(weather: weather)
+                
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(weatherData: weatherInfo.weatherData)
 }
