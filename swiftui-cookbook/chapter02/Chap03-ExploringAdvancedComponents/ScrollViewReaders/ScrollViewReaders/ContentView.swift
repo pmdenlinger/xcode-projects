@@ -45,17 +45,22 @@ struct ContentView: View {
                     .foregroundStyle(.blue)
                     .font(.title)
                 ScrollView {
-                    // scrolling content will go here
+                    Button("Go to letter Q") {
+                        scrolledID = 16
+                    }
+                    .padding()
+                    .background(.blue)
+                    .tint(.yellow)
                 }
-            }
-            VStack {
-                Text("iOS 14+")
-                    .foregroundStyle(.blue)
-                    .font(.title)
-                ScrollView {
-                    // legacy code will go here
-                }
+                VStack {
+                    Text("iOS 14+")
+                        .foregroundStyle(.blue)
+                        .font(.title)
+                    ScrollView {
+                            // legacy code will go here
+                    }
                     
+                }
             }
         }
     }
