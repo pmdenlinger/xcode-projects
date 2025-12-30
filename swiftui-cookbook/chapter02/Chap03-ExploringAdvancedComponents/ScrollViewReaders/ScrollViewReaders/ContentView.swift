@@ -39,13 +39,25 @@ struct ContentView: View {
     @State private var scrolledID: CharacterInfo.ID?
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        HStack(spacing: 20) {
+            VStack {
+                Text("iOS 17+")
+                    .foregroundStyle(.blue)
+                    .font(.title)
+                ScrollView {
+                    // scrolling content will go here
+                }
+            }
+            VStack {
+                Text("iOS 14+")
+                    .foregroundStyle(.blue)
+                    .font(.title)
+                ScrollView {
+                    // legacy code will go here
+                }
+                    
+            }
         }
-        .padding()
     }
 }
 
