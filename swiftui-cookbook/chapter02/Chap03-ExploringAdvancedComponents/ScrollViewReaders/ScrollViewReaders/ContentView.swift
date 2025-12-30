@@ -59,7 +59,15 @@ struct ContentView: View {
                             .background(.yellow)
                             .padding()
                     }
-                    // more code to follow
+                    Button("Go to letter G") {
+                        withAnimation {
+                            scrolledID = 6
+                        }
+                    }
+                    .padding()
+                    .background(.blue)
+                    .tint(.yellow)
+                }
                                 
                             
                 }
@@ -74,9 +82,9 @@ struct ContentView: View {
                     }
                     
                 }
-        }
     }
 }
+
 
 
 #Preview {
