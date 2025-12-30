@@ -51,7 +51,17 @@ struct ContentView: View {
                     .padding()
                     .background(.blue)
                     .tint(.yellow)
-                        // more code will follow
+                    ForEach(CharacterInfo.charArray) { image in
+                        Image(systemName: image.name)
+                            .font(.largeTitle)
+                            .foregroundStyle(.blue)
+                            .frame(width: 90, height: 90)
+                            .background(.yellow)
+                            .padding()
+                    }
+                    // more code to follow
+                                
+                            
                 }
                 .scrollPosition(id: $scrolledID)
             }
