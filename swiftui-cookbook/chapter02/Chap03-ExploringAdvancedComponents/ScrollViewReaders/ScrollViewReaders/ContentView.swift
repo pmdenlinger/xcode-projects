@@ -51,7 +51,10 @@ struct ContentView: View {
                     .padding()
                     .background(.blue)
                     .tint(.yellow)
+                        // more code will follow
                 }
+                .scrollPosition(id: $scrolledID)
+            }
                 VStack {
                     Text("iOS 14+")
                         .foregroundStyle(.blue)
@@ -61,10 +64,10 @@ struct ContentView: View {
                     }
                     
                 }
-            }
         }
     }
 }
+
 
 #Preview {
     ContentView()
