@@ -70,9 +70,9 @@ struct ContentView: View {
                 }
                                 
                             
-                }
-                .scrollPosition(id: $scrolledID)
             }
+            .scrollPosition(id: $scrolledID)
+        }
                 VStack {
                     Text("iOS 14+")
                         .foregroundStyle(.blue)
