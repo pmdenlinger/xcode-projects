@@ -31,6 +31,17 @@ struct ContentView: View {
                         
             }
         }
+        ScrollView(.horizontal) {
+            LazyHGrid(rows: rowSpec, spacing: 20) {
+                ForEach(1...999, id: \.self) { index in
+                    Text("Item \(index)")
+                        .foregroundStyle(.white)
+                        .padding(EdgeInsets(top: 30, leading: 15, bottom: 30, trailing: 15))
+                        .background(colors[index % colors.count])
+                        .clipShape(Capsule())
+                }
+            }
+        }
     }
 }
 
