@@ -26,6 +26,14 @@ struct ContentView: View {
                 Text("Oceania")
         }
         }.padding()
+        DisclosureGroup {
+            Text("Surprise! This is an alternative way of using DisclosureGroup.")
+        } label: {
+            Label("Tap to reveal", systemImage: "cube.box")
+                .font(.system(size: 25, design: .rounded))
+                .foregroundStyle(.blue)
+                
+        }.padding()
     }
 }
 
