@@ -57,6 +57,54 @@ struct RestaurantListView: View {
         "cask"
     ]
     
+    var restaurantTypes = [
+        "Coffee & Tea Shop",
+        "Cafe",
+        "Tea House",
+        "Austrian / Casual Drink",
+        "French",
+        "Bakery",
+        "Bakery",
+        "Chocolate",
+        "Cafe",
+        "American / Seafood",
+        "American",
+        "American",
+        "Breakfast & Brunch",
+        "Coffee & Tea",
+        "Coffee & Tea",
+        "Latin American",
+        "Spanish",
+        "Spanish",
+        "Spanish",
+        "British",
+        "Thai"
+    ]
+    
+    var restaurantLocations = [
+        "Hong Kong",
+        "Hong Kong",
+        "Hong Kong",
+        "Hong Kong",
+        "Hong Kong",
+        "Hong Kong",
+        "Hong Kong",
+        "Sydney",
+        "Sydney",
+        "Sydney",
+        "New York",
+        "New York",
+        "New York",
+        "New York",
+        "New York",
+        "New York",
+        "New York",
+        "London",
+        "London",
+        "London",
+        "London"
+    ]
+    
     var body: some View {
         List {
             ForEach(restaurantNames.indices, id: \.self) {
@@ -71,10 +119,10 @@ struct RestaurantListView: View {
                         Text(restaurantNames[index])
                             .font(.system(.title2, design: .rounded))
                         
-                        Text("Type")
+                        Text(restaurantTypes)
                             .font(.system(.body, design: .rounded))
                         
-                        Text("Location")
+                        Text(restaurantLocations)
                             .font(.system(.subheadline, design: .rounded))
                             .foregroundStyle(.gray)
                         
