@@ -65,6 +65,7 @@ struct RestaurantListView: View {
                     Image(restaurantImages[index])
                         .resizable()
                         .frame(width: 120, height: 118)
+                        .clipShape(RoundedRectangle(cornerRadius: 20))
                     
                     VStack(alignment: .leading) {
                         Text(restaurantNames[index])
