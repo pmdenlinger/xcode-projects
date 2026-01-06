@@ -61,6 +61,11 @@ struct RestaurantListView: View {
         List {
             ForEach(restaurantNames.indices, id: \.self) {
                 index in
+                HStack {
+                    Image(restaurantImages[index])
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                }
                 Text(restaurantNames[index])
             }
         }
