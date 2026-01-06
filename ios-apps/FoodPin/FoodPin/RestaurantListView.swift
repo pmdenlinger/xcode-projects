@@ -65,8 +65,9 @@ struct RestaurantListView: View {
                     Image(restaurantImages[index])
                         .resizable()
                         .frame(width: 40, height: 40)
+                    
+                    Text(restaurantNames[index])
                 }
-                Text(restaurantNames[index])
             }
         }
         .listStyle(.plain)
