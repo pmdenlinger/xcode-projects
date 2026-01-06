@@ -92,3 +92,8 @@ struct RestaurantListView: View {
 #Preview {
     RestaurantListView()
 }
+
+#Preview("Dark Mode") {
+    RestaurantListView()
+        .preferredColorScheme(.dark)
+}
