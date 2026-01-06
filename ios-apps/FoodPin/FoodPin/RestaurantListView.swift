@@ -33,6 +33,30 @@ struct RestaurantListView: View {
         "CASK Pub and Kitchen"
     ]
     
+    var restaurantImages = [
+        "cafedeadend",
+        "homei",
+        "teakha",
+        "cafeloisl",
+        "petiteoyster",
+        "forkee",
+        "posatelier",
+        "bourkestreetbakery",
+        "haigh",
+        "palomino",
+        "upstate",
+        "traif",
+        "graham",
+        "waffleandwolf",
+        "fiveleaves",
+        "cafelore",
+        "confessional",
+        "barrafina",
+        "donostia",
+        "royaloak",
+        "cask"
+    ]
+    
     var body: some View {
         List {
             ForEach(restaurantNames.indices, id: \.self) {
