@@ -83,6 +83,7 @@ struct RestaurantListView: View {
                     
                 }
             }
+            .listRowSeparator(.hidden)
         }
         .listStyle(.plain)
     }
