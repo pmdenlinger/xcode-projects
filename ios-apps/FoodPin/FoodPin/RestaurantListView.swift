@@ -8,14 +8,39 @@
 import SwiftUI
 
 struct RestaurantListView: View {
+    
+    var restaurantNames = [
+        "Cafe Deadend",
+        "Homei",
+        "Teakha",
+        "Cafe Loisl",
+        "Petite Oyster",
+        "For Kee Restaurant",
+        "Po's Atelier",
+        "Bourke Street Bakery",
+        "Haigh's Chocolate",
+        "Palomino Espresso",
+        "Upstate",
+        "Traif",
+        "Graham Avenue Meats and Deli",
+        "Waffle and Wolf",
+        "Five Leaves",
+        "Cafe Lore",
+        "Confessional",
+        "Barrafina",
+        "Donostia",
+        "Royal Oak",
+        "CASK Pub and Kitchen"
+    ]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        List {
+            ForEach(restaurantNames.indices, id: \.self) {
+                index in
+                Text(restaurantNames[index])
+            }
         }
-        .padding()
+        .listStyle(.plain)
     }
 }
 
