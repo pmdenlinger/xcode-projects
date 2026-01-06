@@ -37,7 +37,13 @@ struct ContentView: View {
         
         List{
             ForEach(1...restaurantNames.count-1, id: \.self) { index in
-                Text(restaurantNames[index])
+                HStack {
+                    Image("restaurant")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                    
+                    Text(restaurantNames[index])
+                }
             }
         }
     }
