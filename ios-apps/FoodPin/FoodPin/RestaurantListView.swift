@@ -221,3 +221,18 @@ struct RestaurantListView: View {
     RestaurantListView()
         .preferredColorScheme(.dark)
 }
+
+#Preview("BasicTextImageRow", traits: .sizeThatFitsLayout) {
+    BasicTextImageRow(imageName: "cafedeadend",
+                      name: "Cafe Deadend",
+                      type: "Cafe",
+                      location: "Hong Kong",
+                      isFavorite: .constant(true))
+}
+
+#Preview("FullImageRow", traits: .sizeThatFitsLayout) {
+    FullImageRow(imageName: "cafedeadend",
+                      name: "Cafe Deadend",
+                      type: "Cafe",
+                      location: "Hong Kong")
+}
