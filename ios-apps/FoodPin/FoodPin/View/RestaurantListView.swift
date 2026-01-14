@@ -9,7 +9,11 @@ import SwiftUI
 
 struct BasicTextImageRow: View {
     
+//    MARK: - BINDING
+    
     @Binding var restaurant: Restaurant
+    
+//    MARK: - State variables
     
     @State private var showOptions = false
     @State private var showError = false
