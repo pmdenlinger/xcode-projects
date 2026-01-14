@@ -121,11 +121,7 @@ struct RestaurantListView: View {
         List {
             ForEach(restaurants.indices, id: \.self) {
                 index in
-                BasicTextImageRow(imageName: restaurants[index].image,
-                                  name: restaurants[index].name,
-                                  type: restaurants[index].type,
-                                  location: restaurants[index].location,
-                                  isFavorite: $restaurants[index].isFavorite)
+                BasicTextImageRow(restaurant: $restaurants[index])
                 
             }
             .listRowSeparator(.hidden)
@@ -144,16 +140,19 @@ struct RestaurantListView: View {
 }
 
 #Preview("BasicTextImageRow", traits: .sizeThatFitsLayout) {
-    BasicTextImageRow(imageName: "cafedeadend",
-                      name: "Cafe Deadend",
-                      type: "Cafe",
-                      location: "Hong Kong",
-                      isFavorite: .constant(true))
+    BasicTextImageRow(restaurant:.constant(Restaurant(name: "Cafe Deadend",
+                                                      type: "Cafe",
+                                                      location: "Hong Kong",
+                                                      image: "cafedeadend",
+                                                      isFavorite: true)))
+                      
 }
 
 #Preview("FullImageRow", traits: .sizeThatFitsLayout) {
-    FullImageRow(imageName: "cafedeadend",
-                      name: "Cafe Deadend",
-                      type: "Cafe",
-                      location: "Hong Kong")
+    BasicTextImageRow(restaurant:.constant(Restaurant(name: "Cafe Deadend",
+                                                      type: "Cafe",
+                                                      location: "Hong Kong",
+                                                      image: "cafedeadend",
+                                                      isFavorite: true)))
+    
 }
