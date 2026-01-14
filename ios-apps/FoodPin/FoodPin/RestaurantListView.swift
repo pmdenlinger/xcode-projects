@@ -39,6 +39,37 @@ struct BasicTextImageRow: View {
         }
     }
 
+struct FullImageRow: View {
+    var imageName: String
+    var name: String
+    var type: String
+    var location: String
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Image(imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+            
+            VStack(alignment: .leading) {
+                Text(name)
+                    .font(.system(.title2, design: .rounded))
+                
+                Text(location)
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundStyle(.gray)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            
+            }
+        }
+    }
+    
+
+
 struct RestaurantListView: View {
     
     var restaurantNames = [
@@ -140,7 +171,7 @@ struct RestaurantListView: View {
         List {
             ForEach(restaurantNames.indices, id: \.self) {
                 index in
-                BasicTextImageRow(imageName: restaurantImages[index],
+                FullImageRow(imageName: restaurantImages[index],
                                   name: restaurantNames[index],
                                   type: restaurantTypes[index],
                                   location: restaurantLocations[index])
