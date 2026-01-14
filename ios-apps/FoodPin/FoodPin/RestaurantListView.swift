@@ -41,6 +41,14 @@ struct BasicTextImageRow: View {
         .onTapGesture {
             showOptions.toggle()
         }
+        .confirmationDialog("What do you want to do?", isPresented: $showOptions, titleVisibility: .visible) {
+            Button("Reserve a table") {
+                
+            }
+            Button("Mark as favorite") {
+                
+            }
+        }
         }
     }
 
