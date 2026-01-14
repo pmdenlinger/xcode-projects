@@ -14,33 +14,30 @@ struct BasicTextImageRow: View {
     var type: String
     var location: String
     
-//    The code below was suggested by Copilot and should be checked against Simon //Ng's code before proceeding.
+//This code has changed to match code at beginning of Chapter 8
     
-//    var body: some View {
-//        
-//            HStack(spacing: 12) {
-//                Image(imageName)
-//                    .resizable()
-//                    .scaledToFill()
-//                    .frame(width: 60, height: 60)
-//                    .cornerRadius(8)
-//                    .clipped()
-//                
-//                VStack(alignment: .leading, spacing: 4) {
-//                    Text(name)
-//                        .font(.headline)
-//                    Text(type)
-//                        .font(.subheadline)
-//                        .foregroundColor(.secondary)
-//                    Text(location)
-//                        .font(.caption)
-//                        .foregroundColor(.secondary)
-//                }
-//            }
-//            .padding(.vertical, 8)
-//        
-//    }
-}
+    var body: some View {
+        
+        HStack(alignment: .top, spacing: 20) {
+                Image(imageName)
+                    .resizable()
+                    .frame(width: 120, height: 118)
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                
+                VStack(alignment: .leading) {
+                    Text(name)
+                        .font(.system(.title2, design: .rounded))
+                        
+                    Text(type)
+                        .font(.system(.body, design: .rounded))
+                    
+                    Text(location)
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundStyle(.gray)
+                }
+            }
+        }
+    }
 
 struct RestaurantListView: View {
     
