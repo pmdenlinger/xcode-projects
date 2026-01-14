@@ -9,14 +9,10 @@ import SwiftUI
 
 struct BasicTextImageRow: View {
     
-    var imageName: String
-    var name: String
-    var type: String
-    var location: String
+    @Binding var restaurant: Restaurant
     
     @State private var showOptions = false
     @State private var showError = false
-    @Binding var isFavorite: Bool
     
 
     
@@ -94,8 +90,6 @@ struct FullImageRow: View {
         }
     }
     
-
-
 struct RestaurantListView: View {
     
     @State var restaurants = [
@@ -122,26 +116,15 @@ struct RestaurantListView: View {
         Restaurant(name: "CASK Pub and Kitchen", type: "Thai", location: "London", image: "cask", isFavorite: false),
     ]
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     var body: some View {
         List {
-            ForEach(restaurantNames.indices, id: \.self) {
+            ForEach(restaurants.indices, id: \.self) {
                 index in
-                BasicTextImageRow(imageName: restaurantImages[index],
-                                  name: restaurantNames[index],
-                                  type: restaurantTypes[index],
-                                  location: restaurantLocations[index],
-                                  isFavorite: $restaurantIsFavorites[index])
+                BasicTextImageRow(imageName: restaurants[index].image,
+                                  name: restaurants[index].name,
+                                  type: restaurants[index].type,
+                                  location: restaurants[index].location,
+                                  isFavorite: $restaurants[index].isFavorite)
                 
             }
             .listRowSeparator(.hidden)
