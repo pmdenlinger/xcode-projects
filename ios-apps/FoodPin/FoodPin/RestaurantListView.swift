@@ -16,8 +16,9 @@ struct BasicTextImageRow: View {
     
     @State private var showOptions = false
     @State private var showError = false
+    @Binding var isFavorite: Bool
     
-//This code has changed to match code at beginning of Chapter 8
+
     
     var body: some View {
         
@@ -26,6 +27,11 @@ struct BasicTextImageRow: View {
                     .resizable()
                     .frame(width: 120, height: 118)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
+            if isFavorite {
+                Spacer()
+                Image(systemName: "heart.fill")
+                    .foregroundStyle(.yellow)
+            }
                 
                 VStack(alignment: .leading) {
                     Text(name)
@@ -47,7 +53,7 @@ struct BasicTextImageRow: View {
                 self.showError.toggle()
             }
             Button("Mark as favorite") {
-                
+                self.isFavorite.toggle()
             }
         }
         .alert("Not yet available", isPresented: $showError) {
@@ -55,6 +61,7 @@ struct BasicTextImageRow: View {
         } message: {
             Text("Sorry, this feature is not available yet. Please retry later.")
         }
+        
         }
     }
 
@@ -186,6 +193,9 @@ struct RestaurantListView: View {
         "Thai"
     ]
     
+    @State var restaurantIsFavorites = Array(repeating: false, count: 21)
+    
+    
     var body: some View {
         List {
             ForEach(restaurantNames.indices, id: \.self) {
@@ -193,7 +203,8 @@ struct RestaurantListView: View {
                 BasicTextImageRow(imageName: restaurantImages[index],
                                   name: restaurantNames[index],
                                   type: restaurantTypes[index],
-                                  location: restaurantLocations[index])
+                                  location: restaurantLocations[index],
+                                  isFavorite: $restaurantIsFavorites[index])
                 
             }
             .listRowSeparator(.hidden)
