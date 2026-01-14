@@ -19,26 +19,27 @@ struct BasicTextImageRow: View {
     var body: some View {
         
         HStack(alignment: .top, spacing: 20) {
-                Image(imageName)
+            Image(restaurant.image)
                     .resizable()
                     .frame(width: 120, height: 118)
                     .clipShape(RoundedRectangle(cornerRadius: 20))
-            if isFavorite {
+            
+                
+                VStack(alignment: .leading) {
+                    Text(restaurant.name)
+                        .font(.system(.title2, design: .rounded))
+                        
+                    Text(restaurant.type)
+                        .font(.system(.body, design: .rounded))
+                    
+                    Text(restaurant.location)
+                        .font(.system(.subheadline, design: .rounded))
+                        .foregroundStyle(.gray)
+                }
+            if restaurant.isFavorite {
                 Spacer()
                 Image(systemName: "heart.fill")
                     .foregroundStyle(.yellow)
-            }
-                
-                VStack(alignment: .leading) {
-                    Text(name)
-                        .font(.system(.title2, design: .rounded))
-                        
-                    Text(type)
-                        .font(.system(.body, design: .rounded))
-                    
-                    Text(location)
-                        .font(.system(.subheadline, design: .rounded))
-                        .foregroundStyle(.gray)
                 }
             }
         .onTapGesture {
@@ -48,8 +49,8 @@ struct BasicTextImageRow: View {
             Button("Reserve a table") {
                 self.showError.toggle()
             }
-            Button("Mark as favorite") {
-                self.isFavorite.toggle()
+            Button(restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite") {
+                restaurant.isFavorite.toggle()
             }
         }
         .alert("Not yet available", isPresented: $showError) {
