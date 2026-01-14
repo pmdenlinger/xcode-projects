@@ -14,6 +14,8 @@ struct BasicTextImageRow: View {
     var type: String
     var location: String
     
+    @State private var showOptions = false
+    
 //This code has changed to match code at beginning of Chapter 8
     
     var body: some View {
@@ -36,6 +38,9 @@ struct BasicTextImageRow: View {
                         .foregroundStyle(.gray)
                 }
             }
+        .onTapGesture {
+            showOptions.toggle()
+        }
         }
     }
 
