@@ -12,7 +12,7 @@ struct RestaurantDetailView: View {
     var restaurant: Restaurant
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             Image(restaurant.image)
                 .resizable()
                 .scaledToFill()
