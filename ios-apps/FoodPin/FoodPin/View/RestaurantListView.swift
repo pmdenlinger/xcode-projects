@@ -59,11 +59,12 @@ struct RestaurantListView: View {
                 })
                 .listRowSeparator(.hidden)
             }
+            .listStyle(.plain)
+            
+            .navigationTitle("FoodPin")
+            .navigationBarTitleDisplayMode(.automatic)
         }
-        .listStyle(.plain)
-        
-        .navigationTitle("FoodPin")
-        .navigationBarTitleDisplayMode(.automatic)
+       
     }
 }
 
