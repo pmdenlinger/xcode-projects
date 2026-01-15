@@ -54,7 +54,7 @@ struct RestaurantListView: View {
                     } label: {
                         Image(systemName: "square.and.arrow.up")
                     }
-                    .tint(.orange)
+                    .tint(.blue)
                     }
                 }
                 .onDelete(perform: { indexSet in
@@ -67,7 +67,7 @@ struct RestaurantListView: View {
             .navigationTitle("FoodPin")
             .navigationBarTitleDisplayMode(.automatic)
         }
-        .tint(.yellow)
+        .tint(.blue)
        
     }
 }
