@@ -67,6 +67,7 @@ struct RestaurantListView: View {
             .navigationTitle("FoodPin")
             .navigationBarTitleDisplayMode(.automatic)
         }
+        .tint(.yellow)
        
     }
 }
