@@ -24,6 +24,15 @@ struct RestaurantDetailView: View {
                 .opacity(0.8)
                 .clipShape(RoundedRectangle(cornerRadius: 20))
                 .padding()
+                .overlay {
+                    VStack(spacing: 5) {
+                        Text(restaurant.name)
+                        Text(restaurant.type)
+                        Text(restaurant.location)
+                    }
+                    .font(.system(.headline, design: .rounded))
+                    .foregroundStyle(.white)
+                }
             }
         }
     }
