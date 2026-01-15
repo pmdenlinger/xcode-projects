@@ -14,6 +14,9 @@ struct RestaurantDetailView: View {
     var body: some View {
         Image(restaurant.image)
             .resizable()
+            .scaledToFill()
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .ignoresSafeArea()
     }
 }
 
