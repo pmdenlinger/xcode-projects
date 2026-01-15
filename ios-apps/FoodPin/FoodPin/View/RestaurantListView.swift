@@ -7,94 +7,6 @@
 
 import SwiftUI
 
-struct BasicTextImageRow: View {
-    
-//    MARK: - BINDING
-    
-    @Binding var restaurant: Restaurant
-    
-//    MARK: - State variables
-    
-    @State private var showOptions = false
-    @State private var showError = false
-    
-
-    
-    var body: some View {
-        
-        HStack(alignment: .top, spacing: 20) {
-            Image(restaurant.image)
-                    .resizable()
-                    .frame(width: 120, height: 118)
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-            
-                
-                VStack(alignment: .leading) {
-                    Text(restaurant.name)
-                        .font(.system(.title2, design: .rounded))
-                        
-                    Text(restaurant.type)
-                        .font(.system(.body, design: .rounded))
-                    
-                    Text(restaurant.location)
-                        .font(.system(.subheadline, design: .rounded))
-                        .foregroundStyle(.gray)
-                }
-            if restaurant.isFavorite {
-                Spacer()
-                Image(systemName: "heart.fill")
-                    .foregroundStyle(.yellow)
-                }
-            }
-        .onTapGesture {
-            showOptions.toggle()
-        }
-        .confirmationDialog("What do you want to do?", isPresented: $showOptions, titleVisibility: .visible) {
-            Button("Reserve a table") {
-                self.showError.toggle()
-            }
-            Button(restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite") {
-                restaurant.isFavorite.toggle()
-            }
-        }
-        .alert("Not yet available", isPresented: $showError) {
-            Button("OK") {}
-        } message: {
-            Text("Sorry, this feature is not available yet. Please retry later.")
-        }
-        
-        }
-    }
-
-struct FullImageRow: View {
-    var imageName: String
-    var name: String
-    var type: String
-    var location: String
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Image(imageName)
-                .resizable()
-                .scaledToFill()
-                .frame(height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 20))
-            
-            VStack(alignment: .leading) {
-                Text(name)
-                    .font(.system(.title2, design: .rounded))
-                
-                Text(location)
-                    .font(.system(.subheadline, design: .rounded))
-                    .foregroundStyle(.gray)
-            }
-            .padding(.horizontal)
-            .padding(.bottom)
-            
-            }
-        }
-    }
-    
 struct RestaurantListView: View {
     
     @State var restaurants = [
@@ -150,29 +62,124 @@ struct RestaurantListView: View {
     }
 }
 
-#Preview {
-    RestaurantListView()
-}
-
-#Preview("Dark Mode") {
-    RestaurantListView()
-        .preferredColorScheme(.dark)
-}
-
-#Preview("BasicTextImageRow", traits: .sizeThatFitsLayout) {
-    BasicTextImageRow(restaurant:.constant(Restaurant(name: "Cafe Deadend",
-                                                      type: "Cafe",
-                                                      location: "Hong Kong",
-                                                      image: "cafedeadend",
-                                                      isFavorite: true)))
-                      
-}
-
-#Preview("FullImageRow", traits: .sizeThatFitsLayout) {
-    BasicTextImageRow(restaurant:.constant(Restaurant(name: "Cafe Deadend",
-                                                      type: "Cafe",
-                                                      location: "Hong Kong",
-                                                      image: "cafedeadend",
-                                                      isFavorite: true)))
+struct FullImageRow: View {
+    var imageName: String
+    var name: String
+    var type: String
+    var location: String
     
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Image(imageName)
+                .resizable()
+                .scaledToFill()
+                .frame(height: 200)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+            
+            VStack(alignment: .leading) {
+                Text(name)
+                    .font(.system(.title2, design: .rounded))
+                
+                Text(location)
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundStyle(.gray)
+            }
+            .padding(.horizontal)
+            .padding(.bottom)
+            
+        }
+    }
 }
+
+
+struct BasicTextImageRow: View {
+    
+        //    MARK: - BINDING
+    
+    @Binding var restaurant: Restaurant
+    
+        //    MARK: - State variables
+    
+    @State private var showOptions = false
+    @State private var showError = false
+    
+    
+    
+    var body: some View {
+        
+        HStack(alignment: .top, spacing: 20) {
+            Image(restaurant.image)
+                .resizable()
+                .frame(width: 120, height: 118)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+            
+            
+            VStack(alignment: .leading) {
+                Text(restaurant.name)
+                    .font(.system(.title2, design: .rounded))
+                
+                Text(restaurant.type)
+                    .font(.system(.body, design: .rounded))
+                
+                Text(restaurant.location)
+                    .font(.system(.subheadline, design: .rounded))
+                    .foregroundStyle(.gray)
+            }
+            if restaurant.isFavorite {
+                Spacer()
+                Image(systemName: "heart.fill")
+                    .foregroundStyle(.yellow)
+            }
+        }
+        .contextMenu {
+            
+            Button(action: {
+                self.showError.toggle()
+            }) {
+                HStack {
+                    Text("Reserve a table")
+                    Image(systemName: "phone")
+                }
+            }
+            Button(action: {
+                self.restaurant.isFavorite.toggle()
+            }) {
+                HStack {
+                    Text(restaurant.isFavorite ? "Remove from favorites" : "Mark as favorite")
+                    Image(systemName: "heart")
+                }
+            }
+        }
+    }
+}
+    
+    
+    
+    
+    #Preview {
+        RestaurantListView()
+    }
+    
+    #Preview("Dark Mode") {
+        RestaurantListView()
+            .preferredColorScheme(.dark)
+    }
+    
+    #Preview("BasicTextImageRow", traits: .sizeThatFitsLayout) {
+        BasicTextImageRow(restaurant:.constant(Restaurant(name: "Cafe Deadend",
+                                                          type: "Cafe",
+                                                          location: "Hong Kong",
+                                                          image: "cafedeadend",
+                                                          isFavorite: true)))
+        
+    }
+    
+    #Preview("FullImageRow", traits: .sizeThatFitsLayout) {
+        BasicTextImageRow(restaurant: .constant(Restaurant(name: "Cafe Deadend",
+                                                           type: "Cafe",
+                                                           location: "Hong Kong",
+                                                           image: "cafedeadend",
+                                                           isFavorite: true)))
+    }
+
+
