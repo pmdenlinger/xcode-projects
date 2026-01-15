@@ -12,13 +12,22 @@ struct RestaurantDetailView: View {
     var restaurant: Restaurant
     
     var body: some View {
-        Image(restaurant.image)
-            .resizable()
-            .scaledToFill()
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .ignoresSafeArea()
+        ZStack {
+            Image(restaurant.image)
+                .resizable()
+                .scaledToFill()
+                .frame(minWidth: 0, maxWidth: .infinity)
+                .ignoresSafeArea()
+            
+            Color.black
+                .frame(height: 100)
+                .opacity(0.8)
+                .clipShape(RoundedRectangle(cornerRadius: 20))
+                .padding()
+            }
+        }
     }
-}
+
 
 #Preview {
     RestaurantDetailView(restaurant: Restaurant(
