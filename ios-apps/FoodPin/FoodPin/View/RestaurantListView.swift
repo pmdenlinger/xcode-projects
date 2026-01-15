@@ -149,6 +149,24 @@ struct BasicTextImageRow: View {
                     Image(systemName: "heart")
                 }
             }
+            Button(action: {
+                self.showOptions.toggle()
+            }) {
+                HStack {
+                    Text("Share")
+                    Image(systemName: "square.and.arrow.up")
+                }
+                .sheet(isPresented: $showOptions)
+                {
+                let defaultText = "Just checking in at \(restaurant.name)"
+                
+                if let imageToShare = UIImage(named: restaurant.image) {
+                    ActivityView(activityItems: [defaultText, imageToShare])
+                } else {
+                    ActivityView(activityItems: [defaultText])
+                }
+                }
+            }
         }
     }
 }
