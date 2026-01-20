@@ -22,6 +22,21 @@ struct RestaurantDetailView: View {
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .frame(height: 445)
             }
+            .overlay(alignment: .topTrailing) {
+                VStack {
+                    Image(systemName: "heart")
+                        .frame(minWidth: 0,
+                               maxWidth: .infinity,
+                               minHeight: 0,
+                               maxHeight: .infinity
+                               )
+                        .padding()
+                        .font(.system(size: 30))
+                        .foregroundColor(.white)
+                        .padding(.top, 40)
+                    
+                }
+            }
             
         }
         .navigationBarBackButtonHidden(true)
