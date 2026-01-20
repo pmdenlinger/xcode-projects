@@ -22,13 +22,14 @@ struct RestaurantDetailView: View {
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .frame(height: 445)
             }
-            .overlay(alignment: .topTrailing) {
+            .overlay {
                 VStack {
                     Image(systemName: "heart")
                         .frame(minWidth: 0,
                                maxWidth: .infinity,
                                minHeight: 0,
-                               maxHeight: .infinity
+                               maxHeight: .infinity,
+                               alignment: .topTrailing
                                )
                         .padding()
                         .font(.system(size: 30))
