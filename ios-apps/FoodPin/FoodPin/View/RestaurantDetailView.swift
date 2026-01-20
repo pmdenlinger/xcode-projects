@@ -83,7 +83,7 @@ struct RestaurantDetailView: View {
                 Button(action: {
                     dismiss()
                 }) {
-                    Text("\(Image(systemName: "chevron.left")) \(restaurant.name)")
+                    Text("\(Image(systemName: "chevron.left"))") 
                 }
             }
         }
