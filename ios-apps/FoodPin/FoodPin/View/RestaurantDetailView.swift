@@ -30,13 +30,29 @@ struct RestaurantDetailView: View {
                                minHeight: 0,
                                maxHeight: .infinity,
                                alignment: .topTrailing
-                               )
+                        )
                         .padding()
                         .font(.system(size: 30))
                         .foregroundColor(.white)
                         .padding(.top, 40)
                     
                 }
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(restaurant.name)
+                        .font(.custom("Nunito-Regular", size: 35, relativeTo: .largeTitle))
+                        .bold()
+                    Text(restaurant.type)
+                        .font(.system(.headline, design: .rounded))
+                        .padding(.all, 5)
+                        .background(Color.black)
+                }
+                .frame(minWidth: 0,
+                       maxWidth: .infinity,
+                       minHeight: 0,
+                       maxHeight: .infinity,
+                       alignment: .bottomLeading)
+                .foregroundStyle(.white)
+                .padding()
             }
             
         }
