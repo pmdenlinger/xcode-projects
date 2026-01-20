@@ -15,6 +15,13 @@ struct RestaurantDetailView: View {
     
     var body: some View {
         ScrollView {
+            VStack(alignment: .leading) {
+                Image(restaurant.image)
+                    .resizable()
+                    .scaledToFill()
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .frame(height: 445)
+            }
             
         }
         .navigationBarBackButtonHidden(true)
