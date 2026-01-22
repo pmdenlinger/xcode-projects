@@ -6,13 +6,8 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		5BB89AE02F2032610042B7F2 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB89ADF2F2032610042B7F2 /* UIColor+Ext.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
 		5B0875912F0DA96600BECF1D /* FoodPin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodPin.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		5BB89ADF2F2032610042B7F2 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -67,7 +62,6 @@
 			isa = PBXGroup;
 			children = (
 				5B0875932F0DA96600BECF1D /* FoodPin */,
-				5BB89ADF2F2032610042B7F2 /* UIColor+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -146,7 +140,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BB89AE02F2032610042B7F2 /* UIColor+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
