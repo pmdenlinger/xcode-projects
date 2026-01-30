@@ -208,15 +208,12 @@ struct BasicTextImageRow_Previews: PreviewProvider {
 
 struct FullImageRow_Previews: PreviewProvider {
     static var previews: some View {
-        BasicTextImageRow(restaurant: .constant(Restaurant(
+        FullImageRow(
+            imageName: "cafedeadend",
             name: "Cafe Deadend",
             type: "Cafe",
             location: "Hong Kong",
-            phone: "232-923423",
-            description: "Searching for great breakfast eateries and coffee? This place is for you.",
-            image: "cafedeadend",
-            isFavorite: true
-        )))
+        )
         .previewLayout(.sizeThatFits)
     }
 }
