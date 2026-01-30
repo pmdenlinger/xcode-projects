@@ -56,8 +56,8 @@ struct RestaurantListView: View {
             
             .navigationTitle("FoodPin")
             .navigationBarTitleDisplayMode(.automatic)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarColorScheme(.dark, for: .navigationBar)
+//            .toolbarBackground(.visible, for: .navigationBar)
+//            .toolbarColorScheme(.dark, for: .navigationBar)
             
             
         }
