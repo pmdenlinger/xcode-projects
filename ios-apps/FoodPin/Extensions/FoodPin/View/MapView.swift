@@ -31,12 +31,12 @@ struct MapView: View {
         
         do {
             let response = try await localSearch.start()
-            if let coordinate = response.mapItems.first?.placemark.coordinate {
-                region = MKCoordinateRegion(
-                    center: coordinate,
-                    span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-                )
-            }
+                // Use the boundingRegion center directly
+            let coordinate = response.boundingRegion.center
+            region = MKCoordinateRegion(
+                center: coordinate,
+                span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+            )
         } catch {
             print("Search error: \(error)")
         }
@@ -44,5 +44,5 @@ struct MapView: View {
 }
 
 #Preview {
-    MapView()
+    MapView(location: "54 Frith Street London W1D 4SL United Kingdom")
 }
